@@ -1,0 +1,53 @@
+@value nav-height from 'assets/styles/variables.module.sass'
+@import 'assets/styles/functions.module.sass'
+
+.nav
+  position: fixed
+  top: 0
+  left: 0
+  right: 0
+  height: nav-height
+  z-index: 20
+  display: flex
+  justify-content: center
+  align-items: center
+  transition: 0.3s ease-in-out
+
+  &.fixed
+    background: var(--dark-bg)
+    
+.logo
+  position: absolute
+  left: pxToRem(30)
+  display: flex
+  align-items: center
+
+  img
+    max-height: calc(nav-height * 0.85)
+    margin-right: pxToRem(10)
+
+.menu
+  &List
+    display: flex
+    padding-left: 0
+    list-style: none
+    margin-bottom: 0
+
+  &Item
+    margin: 0 pxToRem(30)
+
+    &Link
+      display: flex
+      flex-direction: column
+      align-items: center
+
+    &Title
+      font-size: pxToRem(20)
+      margin-top: 0.2em
+      transition: 0.3s ease-in-out
+
+.right
+  display: flex
+  align-items: center
+  position: absolute
+  right: pxToRem(40)
