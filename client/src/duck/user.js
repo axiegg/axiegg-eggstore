@@ -7,6 +7,8 @@ const initialState = {
   address: null,
   token: null,
   nickname: null,
+  balanceWETH: null,
+  balanceETH: null,
 };
 
 // Reducer

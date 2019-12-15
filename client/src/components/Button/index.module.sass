@@ -2,7 +2,7 @@
 @import 'assets/styles/functions.module.sass'
 
 .button
-  color: #fff
+  color: var(--c-white)
   background-color: var(--accent-dark)
   border: 1px solid var(--accent-dark)
   font-weight: 500
@@ -20,11 +20,11 @@
   outline: none!important
 
   &:hover
-    background-color: #fff
-    color: var(--accent-light)
+    background-color: var(--c-white)
+    color: var(--accent-dark)
 
   &[disabled]
-    color: #fff
+    color: var(--c-white)
     background-color: #bbb
     border: none
     cursor: not-allowed

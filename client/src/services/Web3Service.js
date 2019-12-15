@@ -1,17 +1,52 @@
 import Web3 from 'web3';
-import { OpenSeaPort, Network } from 'opensea-js'
+import { OpenSeaPort, Network } from 'opensea-js';
 import store from 'store';
 
-import { setAddress } from 'duck/user';
+import { setUserData } from 'duck/user';
 import { setWeb3 } from 'duck/web3';
 import { setOpensea } from 'duck/opensea';
+import { balanceOf } from 'services/WETHService';
+
+export const parseWeiToFixed = (string, decimals) => {
+  let numberString = string;
+  numberString = +parseFloat(string).toFixed(decimals);
+
+  return numberString;
+};
+
+export const fromWei = (amount) => {
+  if (!amount) {
+    return 0;
+  }
+
+  const { web3 } = store.getState();
+
+  return web3.utils.fromWei(amount.toString(), 'ether');
+};
+
+export const toWei = (amount) => {
+  if (!amount) {
+    return 0;
+  }
+
+  const { web3 } = store.getState();
+
+  return web3.utils.toWei(amount.toString(), 'ether');
+};
 
 const initAccountAddres = (web3) => {
   const { address } = store.getState().user;
 
   web3.eth.getAccounts().then(async (accounts) => {
     if (accounts[0] !== address) {
-      store.dispatch(setAddress(accounts[0]));
+      const balanceWETH = parseWeiToFixed(await balanceOf(accounts[0]), 3);
+      const balanceETH = parseWeiToFixed(fromWei(await web3.eth.getBalance(accounts[0])), 3);
+
+      store.dispatch(setUserData({
+        address: accounts[0],
+        balanceWETH,
+        balanceETH,
+      }));
     }
     return null;
   });
@@ -63,14 +98,4 @@ export const initContract = (abi, address) => {
   }
 
   return new web3.eth.Contract(abi, address);
-};
-
-export const fromWei = (amount) => {
-  if (!amount) {
-    return 0;
-  }
-
-  const { web3 } = store.getState();
-
-  return web3.utils.fromWei(amount.toString(), 'ether');
 };

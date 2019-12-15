@@ -15,39 +15,18 @@
   font-size: 2.2em
   margin-bottom: 0.2em
 
-.subtitle
-  font-size: 1em
-  margin-top: 0
-  font-weight: normal
-  line-height: 1.55em
-
-.data
+.convert
   &Container
-    margin-top: 1.5em
-    margin-bottom: 2em
+    margin-top: pxToRem(60)
+    display: flex
+    flex-wrap: wrap
+    align-items: flex-start
 
-  &Title
-    font-size: 0.75em
-    font-weight: bold
-    display: block
-    margin-bottom: 0.1em
+    .convertButton
+      margin-top: pxToRem(20)
 
-.shares
-  display: flex
-  width: 100%
-  max-width: 20em
-  justify-content: space-between
-  margin: 0 auto
-
-.bankValue
-  font-size: 1.5em
-
-.sharesValue
-  font-size: 1.2em
-
-.manifesto
-  &Hint
-    margin-bottom: 0.75em
-
-  &Container
-    margin-top: 2em
+  &Item
+    width: 50%
+    display: flex
+    flex-direction: column
+    align-items: center
