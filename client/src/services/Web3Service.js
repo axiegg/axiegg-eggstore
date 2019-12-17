@@ -1,5 +1,6 @@
 import Web3 from 'web3';
 import { OpenSeaPort, Network } from 'opensea-js';
+import BigNumber from 'bignumber.js';
 import store from 'store';
 
 import { setUserData } from 'duck/user';
@@ -15,20 +16,20 @@ export const parseWeiToFixed = (string, decimals) => {
 };
 
 export const fromWei = (amount) => {
-  if (!amount) {
-    return 0;
-  }
-
   const { web3 } = store.getState();
 
   return web3.utils.fromWei(amount.toString(), 'ether');
 };
 
-export const toWei = (amount) => {
-  if (!amount) {
-    return 0;
-  }
+export const BNToNumber = bigNumber => (
+  BigNumber(bigNumber).toString()
+);
 
+export const BNToETH = bigNumber => (
+  parseWeiToFixed(fromWei(BNToNumber(bigNumber)), 2)
+);
+
+export const toWei = (amount) => {
   const { web3 } = store.getState();
 
   return web3.utils.toWei(amount.toString(), 'ether');
