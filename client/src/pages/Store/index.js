@@ -44,7 +44,7 @@ const Store = ({ opensea }) => {
 
   useEffect(() => {
     const getOrders = async () => {
-      const { bundles, estimatedCount } = await opensea.api.getBundles({
+      const { bundles } = await opensea.api.getBundles({
         owner: EGGS_WALLET,
         asset_contract_address: AXIE_TOKEN_ADDRESS,
       });

@@ -10,6 +10,7 @@ import NotFound from 'pages/NotFound';
 import Home from 'pages/Home';
 import Store from 'pages/Store';
 import Profile from 'pages/Profile';
+import BundleLister from 'pages/BundleLister';
 
 const Routes = () => (
   <Router>
@@ -18,6 +19,7 @@ const Routes = () => (
         <NotificationsList />
         <Menu />
         <Switch>
+          <Route path="/bundle-lister" component={BundleLister} />
           <Route path="/profile/:address" component={Profile} />
           <Route path="/store" component={Store} />
           <Route path="/" exact component={Home} />

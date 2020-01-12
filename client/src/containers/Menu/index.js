@@ -74,7 +74,7 @@ class Menu extends Component {
         </Link>
         <ul className={styles.menuList}>
           {MENU_ITEMS.map(item => (
-            <li className={styles.menuItem}>
+            <li key={item.link} className={styles.menuItem}>
               <Link className={styles.menuItemLink} to={item.link}>
                 <span className={styles.menuItemTitle}>{item.title}</span>
               </Link>
