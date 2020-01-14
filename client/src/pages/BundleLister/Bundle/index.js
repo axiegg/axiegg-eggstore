@@ -4,7 +4,7 @@ import Button from 'components/Button';
 import ExternalLink from 'components/ExternalLink';
 
 import styles from './index.module.sass';
-import { getAxiePNG } from 'services/Axie/Api';
+import { getAxiePNG } from 'services/Axie/api';
 
 const Bundle = ({
   bundle,
