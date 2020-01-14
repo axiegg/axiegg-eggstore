@@ -1,7 +1,7 @@
 @import 'assets/styles/functions.module.sass'
 
 .container
-  max-width: pxToRem(800)
+  max-width: pxToRem(900)
   margin: 0 auto
 
 .axie
@@ -21,7 +21,19 @@
 
 .imageContainer
   position: sticky
-  top: 100px
+  top: 150px
 
   img
     max-width: 100%
+
+.data
+  &Title
+    margin-top: 1.5em
+    font-size: pxToRem(20)
+
+    &:first-child
+      marin-top: 0
+
+  &Parents
+    display: flex
+    justify-content: space-between

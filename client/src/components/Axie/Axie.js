@@ -1,9 +1,11 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import classnames from 'classnames';
 import styles from './index.module.sass';
 
 import { AxieParts, AxiePrice, AxieStats, AxieImage, AxieName, AxieBadge } from 'components/Axie';
+import Box from 'components/Box';
 
 const breedCosts = [700, 900, 900, 1500, 2400, 3000, 3000];
 
@@ -21,33 +23,20 @@ const availableBreedsHelper = (breedCount, exp) => {
   return available;
 };
 
-const Axie = ({ axie, withExp, className }) => {
+const Axie = ({ axie, className }) => {
   const { auction, id, breedCount, title, exp, pendingCalc, parts, stats, name } = axie;
-  const availableBreeds = availableBreedsHelper(breedCount, exp + pendingCalc);
 
   return (
-    <a className={classnames(styles.axie, className)} href={`https://axieinfinity.com/axie/${id}`} target="_blank" rel="noopener noreferrer">
-      <AxieName {...{ name, axieClass: axie.class }} />
-      <AxieBadge {...{ title }} />
-      <div className={styles.breedContainer}>
-        { withExp && (
-          <div className={styles.expContainer}>
-            <span className={styles.exp}>
-              Exp: {exp}&nbsp;
-              <span className={styles.expPending}>({pendingCalc || 0})</span>
-            </span>
-          </div>
-        )}
-        <p className={styles.breeds}>
-          Breeds: {breedCount}/7&nbsp;
-          <span className={styles.breedsAvailable}>({availableBreeds})</span>
-        </p>
-      </div>
-      <AxieImage {...{ id }} />
-      <AxiePrice {...{ auction }} axieClass={axie.class} />
-      <AxieStats {...{ stats }} axieClass={axie.class} />
-      <AxieParts {...{ parts }} />
-    </a>
+    <Link className={classnames(styles.axie, className)} to={`/axie/${id}`}>
+      <Box>
+        <AxieName {...{ name: `#${id}`, axieClass: axie.class }} />
+        <AxieBadge {...{ title }} />
+        <div className={styles.breedContainer}>
+          <p className={styles.breeds}>Breeds: {breedCount}/7&nbsp;</p>
+        </div>
+        <AxieImage {...{ id, className: styles.axieImage }} />
+      </Box>
+    </Link>
   );
 };
 

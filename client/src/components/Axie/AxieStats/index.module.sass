@@ -11,24 +11,23 @@
   margin-left: 0.8em
   display: flex
   align-items: center
-  font-size: pxToRem(14)
+  flex-wrap: wrap
+
+  &Title
+    width: 100%
+    font-size: pxToRem(12)
+    margin-bottom: 0.5em
+    text-transform: uppercase
+    color: rgba(0, 0, 0, 0.75)
 
   &Value
     margin: 0
     margin-left: 0.2em
+    font-size: pxToRem(20)
+    font-weight: 500
 
   &Icon
-    width: pxToRem(19)
-    height: pxToRem(19)
     border-radius:  pxToRem(4)
     display: flex
     align-items: center
     justify-content: center
-
-    &.speed
-      svg
-        height: 80%
-
-  svg
-    width: 70%
-    height: 75%

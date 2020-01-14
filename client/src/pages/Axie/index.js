@@ -15,21 +15,37 @@ const Axie = ({
   },
 }) => {
   const [axie, setAxie] = useState(null);
+  const [parentsAxie, setParentsAxie] = useState(null);
 
   useEffect(() => {
     const requestAxieData = async () => {
-      const axieData = await getSingleAxie(axieId);
-      setAxie(axieData.data);
+      const { data: axieData } = await getSingleAxie(axieId);
+      setAxie(axieData);
+
+      if (axieData.matronId !== 0) {
+        const { data: matron } = await getSingleAxie(axieData.matronId);
+        const { data: sire } = await getSingleAxie(axieData.sireId);
+
+        setParentsAxie({
+          sire,
+          matron,
+        });
+      }
+    }
+
+    if (axie !== null) {
+      setAxie(null)
+      setParentsAxie(null)
     }
 
     requestAxieData();
-  }, []);
+  }, [axieId]);
 
   return (
     <FullHeight start>
       <Container>
         {axie
-          ? <AxieView {...{ axie }} />
+          ? <AxieView {...{ axie, parentsAxie }} />
           : <Loader />
         }
       </Container>

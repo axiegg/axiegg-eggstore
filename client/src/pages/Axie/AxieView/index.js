@@ -1,7 +1,11 @@
-import React, { useEffect } from 'react';
-import { AxieImage, AxieName, AxieBadge, AxieStats, AxieParts } from 'components/Axie';
+import React, { useEffect, Fragment } from 'react';
+import Axie, { AxieImage, AxieName, AxieBadge, AxieStats, AxieParts } from 'components/Axie';
+import Box from 'components/Box';
 
 import styles from './index.module.sass'
+
+import AxieAbout from './AxieAbout';
+// import AxieAbout from './AxieAbout';
 
 const AxieView = ({
   axie,
@@ -14,7 +18,10 @@ const AxieView = ({
     level,
     breedCount,
     owner,
+    matronId,
+    sireId,
   },
+  parentsAxie,
 }) => (
   <div className={styles.container}>
     <div className={styles.imageContainer}>
@@ -26,18 +33,26 @@ const AxieView = ({
       <AxieImage {...{ id }} />
     </div>
     <div className={styles.dataContainer}>
-      <h3>About</h3>
-      <div>
-        {axie.class}
-        {level}
-        {breedCount}
-        {owner}
-      </div>
-      <h3>Stats</h3>
-      <AxieStats {...{ stats, axieClass: axie.class }} />
-      <h3>Body Parts</h3>
-      <AxieParts {...{ parts, axieClass: axie.class }} />
-      <h3>Abilities</h3>
+      <h3 className={styles.dataTitle}>About</h3>
+      <Box><AxieAbout {...{ axie }} /></Box>
+      <h3 className={styles.dataTitle}>Stats</h3>
+      <Box><AxieStats {...{ stats, axieClass: axie.class }} /></Box>
+      <h3 className={styles.dataTitle}>Body Parts</h3>
+      <Box><AxieParts {...{ parts, axieClass: axie.class }} /></Box>
+      <h3 className={styles.dataTitle}>Abilities</h3>
+      <Box>Abilities here</Box>
+      {parentsAxie !== null
+        ? (
+          <Fragment>
+            <h3 className={styles.dataTitle}>Parents</h3>
+            <div className={styles.dataParents}>
+              <Axie {...{ axie: parentsAxie.sire }} />
+              <Axie {...{ axie: parentsAxie.matron }} />
+            </div>
+          </Fragment>
+        )
+        : null
+      }
     </div>
   </div>
 );

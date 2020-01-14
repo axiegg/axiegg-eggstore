@@ -1,20 +1,17 @@
 @import 'assets/styles/functions.module.sass'
 
 .axie
-  width: 23%
+  width: pxToRem(215)
   margin: 0 0.75% 1.5%
   text-align: center
-  padding: 0.4em 0.4em 1em
   box-sizing: border-box
-  box-shadow: 0 0 0.25rem 0.02rem rgba(0,0,0,.7)
   overflow: hidden
-  border-radius: 1rem
-  color: #424242
   font-size: pxToRem(16)
   display: inline-block
 
-  &:hover
-    color: #424242
+
+  &Image
+    margin: 0 auto pxToRem(20)!important
 
 .expContainer, .breeds
   position: relative
@@ -31,11 +28,4 @@
   margin: 0 0.1em
 
   &Available
-    font-size: 0.9em
-
-.exp
-  &Container
-    text-align: left
-
-  &Pending
     font-size: 0.9em

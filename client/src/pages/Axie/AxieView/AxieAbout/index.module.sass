@@ -1,0 +1,29 @@
+@import 'assets/styles/functions.module.sass'
+
+.data
+  &Title
+    width: 100%
+    font-size: pxToRem(12)
+    margin-bottom: 0
+    text-transform: uppercase
+    color: rgba(0, 0, 0, 0.75)
+
+  &Container
+    display: flex
+    flex-wrap: wrap
+
+  &Item
+    width: 33.33%
+
+    &:last-child 
+      width: 100%
+      margin-top: pxToRem(20)
+
+.link
+  font-size: 0.9em
+  text-decoration: underline
+
+  &:hover
+    text-decoration: none
+
+

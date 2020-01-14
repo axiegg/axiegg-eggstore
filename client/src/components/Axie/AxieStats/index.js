@@ -10,44 +10,22 @@ import { ReactComponent as SpeedIcon } from 'assets/images/icons/icon-speed.svg'
 
 import styles from './index.module.sass';
 
-const AxieStats = ({ stats: { hp, skill, speed, morale }, axieClass, className }) => (
+const STATS = [
+  { title: 'Health', icon: <HPIcon />, key: 'hp' },
+  { title: 'Speed', icon: <SpeedIcon />, key: 'skill' },
+  { title: 'Skill', icon: <SkillIcon />, key: 'speed' },
+  { title: 'Morale', icon: <MoraleIcon />, key: 'morale' },
+];
+
+const AxieStats = ({ stats, axieClass, className }) => (
   <div className={classnames(styles.container, className)}>
-    <div className={styles.stat}>
-      <span
-        className={styles.statIcon}
-        style={{ backgroundColor: classColors[axieClass] }}
-      >
-        <HPIcon />
-      </span>
-      <p className={styles.statValue}>{hp}</p>
-    </div>
-    <div className={styles.stat}>
-      <span
-        className={classnames(styles.statIcon, styles.speed)}
-        style={{ backgroundColor: classColors[axieClass] }}
-      >
-        <SpeedIcon />
-      </span>
-      <p className={styles.statValue}>{speed}</p>
-    </div>
-    <div className={styles.stat}>
-      <span
-        className={styles.statIcon}
-        style={{ backgroundColor: classColors[axieClass] }}
-      >
-        <SkillIcon />
-      </span>
-      <p className={styles.statValue}>{skill}</p>
-    </div>
-    <div className={styles.stat}>
-      <span
-        className={styles.statIcon}
-        style={{ backgroundColor: classColors[axieClass] }}
-      >
-        <MoraleIcon />
-      </span>
-      <p className={styles.statValue}>{morale}</p>
-    </div>
+    {STATS.map(({ title, icon, key }) => (
+      <div className={styles.stat} key={key}>
+        <h4 className={styles.statTitle}>{title}</h4>
+        <span className={styles.statIcon}>{icon}</span>
+        <p className={styles.statValue}>{stats[key]}</p>
+      </div>
+    ))}
   </div>
 );
 
