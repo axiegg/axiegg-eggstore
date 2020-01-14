@@ -1,0 +1,27 @@
+@import 'assets/styles/functions.module.sass'
+
+.container
+  max-width: pxToRem(800)
+  margin: 0 auto
+
+.axie
+  &Titles
+    display: flex
+    align-items: center
+    flex-wrap: wrap
+
+  &Name
+    font-size: pxToRem(30)
+    width: 100%
+
+.imageContainer, .dataContainer
+  display: inline-block
+  width: 50%
+  vertical-align: top
+
+.imageContainer
+  position: sticky
+  top: 100px
+
+  img
+    max-width: 100%

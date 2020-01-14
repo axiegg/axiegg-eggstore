@@ -9,7 +9,7 @@ import styles from './index.module.sass';
 import MenuAccount from './MenuAccount';
 
 const MENU_ITEMS = [
-  { link: '/store', title: 'Store' },
+  { link: '/teams', title: 'Teams' },
 ];
 
 class Menu extends Component {

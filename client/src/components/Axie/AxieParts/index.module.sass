@@ -1,0 +1,105 @@
+@value accent, accent-gray, medium-desktop, mobile from 'assets/styles/variables.module.sass'
+@value accent-beast, accent-plant, accent-aquatic, accent-bird, accent-reptile, accent-bug, accent-hidden1, accent-hidden2, accent-hidden3 from 'assets/styles/variables.module.sass'
+
+@import 'assets/styles/functions.module.sass';
+
+.parts
+  margin-top: 1rem
+  font-size: pxToRem(17)
+  display: flex
+  flex-wrap: wrap
+
+.part
+  width: 50%
+  display: flex
+  align-items: center
+  margin-bottom: 0.25em
+  font-size: 1em
+
+  &Icon
+    width: 1.35em
+    height: 1.35em
+    margin-right: 0.4em
+    border-radius: 50%
+    display: flex
+    align-items: center
+    justify-content: center
+
+    .icon
+      width: inherit
+      height: inherit
+      display: block
+      background: center center no-repeat
+      background-size: 75%
+
+    &.eyes .icon
+      background-size: 65%
+
+    &.ears .icon
+      background-size: 45%
+
+    &.tail .icon
+      background-size: 65%
+
+  &Name
+    font-size: 0.95em
+    max-width: 10em
+    text-align: left
+
+  &Stat, &StatIcon
+    margin-left: 0.35em
+    min-width: 1.6em
+    display: inline-block
+    text-align: center
+
+    &:first-child
+      margin-left: 0
+
+  &StatIcons
+    font-size: 0.9em
+    text-align: right
+
+    g, path
+      fill: #636363
+
+  &Stats
+    font-size: 0.85em
+    text-align: right
+    flex: 1
+
+// colors of ids etc.
+.mystic
+  color: rgb(84, 176, 230)
+
+.beast .partIcon
+  background-color: accent-beast
+
+.plant .partIcon
+  background-color: accent-plant
+
+.aquatic .partIcon
+  background-color: accent-aquatic
+
+.bird .partIcon
+  background-color: accent-bird
+
+.reptile .partIcon
+  background-color: accent-reptile
+
+.bug .partIcon
+  background-color: accent-bug
+
+.hidden_1 .partIcon
+  background-color: accent-hidden1
+
+.hidden_2 .partIcon
+  background-color: accent-hidden2
+
+.hidden_3 .partIcon
+  background-color: accent-hidden3
+
+@media medium-desktop
+  .part
+    &Icon
+      width: 24px
+      height: 24px

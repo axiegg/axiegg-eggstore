@@ -1,0 +1,34 @@
+@import 'assets/styles/functions.module.sass'
+
+.container
+  display: flex
+  align-items: center
+  justify-content: center
+  margin-top: 0.5em
+  margin-bottom: 0.5em
+
+.stat
+  margin-left: 0.8em
+  display: flex
+  align-items: center
+  font-size: pxToRem(14)
+
+  &Value
+    margin: 0
+    margin-left: 0.2em
+
+  &Icon
+    width: pxToRem(19)
+    height: pxToRem(19)
+    border-radius:  pxToRem(4)
+    display: flex
+    align-items: center
+    justify-content: center
+
+    &.speed
+      svg
+        height: 80%
+
+  svg
+    width: 70%
+    height: 75%

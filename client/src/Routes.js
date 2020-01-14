@@ -8,7 +8,7 @@ import NotificationsList from 'containers/NotificationsList';
 import NotFound from 'pages/NotFound';
 
 import Home from 'pages/Home';
-import Store from 'pages/Store';
+import Teams from 'pages/Teams';
 import Profile from 'pages/Profile';
 import BundleLister from 'pages/BundleLister';
 import Axie from 'pages/Axie';
@@ -23,7 +23,7 @@ const Routes = () => (
           <Route path="/axie/:axieId" component={Axie} />
           <Route path="/bundle-lister" component={BundleLister} />
           <Route path="/profile/:address" component={Profile} />
-          <Route path="/store" component={Store} />
+          <Route path="/teams" component={Teams} />
           <Route path="/" exact component={Home} />
           <Route path="/" component={NotFound} />
         </Switch>

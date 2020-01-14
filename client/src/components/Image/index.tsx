@@ -6,6 +6,7 @@ interface ImageProps {
   alt?: string;
   className?: string;
   onError?: (e: any) => void;
+  noLazy?: boolean;
 }
 
 const Image = ({
@@ -13,9 +14,10 @@ const Image = ({
   alt,
   className,
   onError,
+  noLazy,
 }: ImageProps) => (
   <LazyLoad>
-    <img {...{ src, className, onError }} alt={alt || ''} />
+    <img {...{ src, className, onError, noLazy }} alt={alt || ''} />
   </LazyLoad>
 );
 
