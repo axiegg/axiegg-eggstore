@@ -5,39 +5,10 @@ import styles from './index.module.sass';
 
 import { FullHeight, Container } from 'components/Layout';
 import Loader from 'components/Loader';
-import Button from 'components/Button';
 
 import { AXIE_TOKEN_ADDRESS, EGGS_WALLET } from 'shared/constants';
-import { buyOrder } from 'services/Opensea';
-import { BNToETH } from 'services/Web3Service';
 
-const Bundle = ({
-  bundle: {
-    name,
-    assets,
-    sellOrders,
-  },
-}) => {
-  const [order, setOrder] = useState(null);
-
-  useEffect(() => {
-    if (sellOrders.length > 0) {
-      const sortedSellOrders = sellOrders.sort((a, b) => BNToETH(a.basePrice) > BNToETH(b.basePrice));
-      setOrder(sortedSellOrders[0]);
-    }
-  }, []);
-
-  return (
-    <div className={styles.bundle}>
-      <h4>{name}</h4>
-      <p>{assets.length} assets</p>
-      {order !== null
-        ? <Button onClick={() => buyOrder(order)}>Buy for {BNToETH(order.basePrice)} ETH</Button>
-        : <p>Bundle has no fixed price.</p>
-      }
-    </div>
-  );
-};
+import Bundle from './Bundle';
 
 const Teams = ({ opensea }) => {
   const [bundlesList, setBundlesList] = useState(null);
@@ -47,6 +18,7 @@ const Teams = ({ opensea }) => {
       const { bundles } = await opensea.api.getBundles({
         owner: EGGS_WALLET,
         asset_contract_address: AXIE_TOKEN_ADDRESS,
+        on_sale: true,
       });
 
       setBundlesList(bundles);
@@ -60,10 +32,14 @@ const Teams = ({ opensea }) => {
   return (
     <FullHeight className={styles.fullHeight}>
       <Container className={styles.container}>
-        <h1 className={styles.title}>Teams Page</h1>
+        <h1 className={styles.title}>Teams Bundles</h1>
         {bundlesList !== null
           ? bundlesList.length > 0
-            ? bundlesList.map(bundle => <Bundle {...{ key: bundle.slug, bundle }} />)
+            ? (
+              <div className={styles.bundles}>
+                {bundlesList.map(bundle => <Bundle {...{ key: bundle.slug, bundle }} />)}
+              </div>
+            )
             : <p>We couldn`t find any bundles with teams</p>
           : <Loader />
         }
