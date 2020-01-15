@@ -23,19 +23,20 @@ const Axie = ({
       setAxie(axieData);
 
       if (axieData.matronId !== 0) {
-        const { data: matron } = await getSingleAxie(axieData.matronId);
-        const { data: sire } = await getSingleAxie(axieData.sireId);
+        const matron = await getSingleAxie(axieData.matronId);
+        const sire = await getSingleAxie(axieData.sireId);
+
 
         setParentsAxie({
           sire,
           matron,
         });
       }
-    }
+    };
 
     if (axie !== null) {
-      setAxie(null)
-      setParentsAxie(null)
+      setAxie(null);
+      setParentsAxie(null);
     }
 
     requestAxieData();
@@ -51,6 +52,6 @@ const Axie = ({
       </Container>
     </FullHeight>
   );
-}
+};
 
 export default Axie;

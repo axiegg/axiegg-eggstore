@@ -1,8 +1,8 @@
-import React, { useEffect, Fragment } from 'react';
+import React, { Fragment } from 'react';
 import Axie, { AxieImage, AxieName, AxieBadge, AxieStats, AxieParts } from 'components/Axie';
 import Box from 'components/Box';
 
-import styles from './index.module.sass'
+import styles from './index.module.sass';
 
 import About from './About';
 import Abilities from './Abilities';
@@ -15,12 +15,6 @@ const AxieView = ({
     title,
     stats,
     parts,
-    level,
-    breedCount,
-    owner,
-    matronId,
-    sireId,
-    genes,
     customData: {
       decodedParts,
     },

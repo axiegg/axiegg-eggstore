@@ -13,12 +13,16 @@ export const getPartCardData = (part) => {
   const { moves } = part;
 
   if (moves.length > 0) {
+    if (moves[0].name === 'Deafening Song') {
+      return cards['Piercing Sound'];
+    }
+
     return cards[moves[0].name];
   }
-}
+};
 
 export const requestCardsData = async () => {
-  const { data } = await createRequest('get', CDN_CARDS_DATA)
+  const { data } = await createRequest('get', CDN_CARDS_DATA);
 
   const parsedData = {};
 
@@ -27,7 +31,7 @@ export const requestCardsData = async () => {
       ...entry[1],
       abilityKey: entry[0],
       src: getCardSrc(entry[0]),
-    }
+    };
   });
 
   store.dispatch(setCardsData(parsedData));

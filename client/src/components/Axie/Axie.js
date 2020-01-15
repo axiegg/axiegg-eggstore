@@ -28,15 +28,9 @@ const availableBreedsHelper = (breedCount, exp) => {
 const AxieView = ({
   axie,
   axie: {
-    auction,
     id,
     breedCount,
     title,
-    exp,
-    pendingCalc,
-    parts,
-    stats,
-    name,
   },
   className,
 }) => (
@@ -50,17 +44,17 @@ const AxieView = ({
       <AxieImage {...{ id, className: styles.axieImage }} />
     </Box>
   </Link>
-)
+);
 
 const Axie = ({ requestId, axie, className }) => {
-  const [axieData, setAxieData] = useState(axie || null)
+  const [axieData, setAxieData] = useState(axie || null);
 
   useEffect(() => {
     if (requestId) {
       const requestAxieData = async () => {
         const axieData = await getSingleAxie(requestId);
         setAxieData(axieData);
-      }
+      };
 
       requestAxieData();
     }
@@ -68,7 +62,7 @@ const Axie = ({ requestId, axie, className }) => {
 
   return axieData
     ? <AxieView {...{ axie: axieData, className }} />
-    : null
+    : null;
 };
 
 export default Axie;
