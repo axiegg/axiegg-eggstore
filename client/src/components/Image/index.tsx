@@ -17,7 +17,7 @@ const Image = ({
   noLazy,
 }: ImageProps) => (
   <LazyLoad>
-    <img {...{ src, className, onError, noLazy }} alt={alt || ''} />
+    <img {...{ src, className, onError, nolazy: noLazy }} alt={alt || ''} />
   </LazyLoad>
 );
 

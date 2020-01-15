@@ -1,0 +1,97 @@
+@import 'assets/styles/functions.module.sass'
+@value accent-plant from 'assets/styles/variables.module.sass'
+@value skillBorder: rgb(125, 69, 27)
+@value textBorder: rgb(131, 21, 43)
+@value textBorderGreen: rgb(2, 89, 89)
+@value hexagon: rgb(52, 72, 41)
+@value attBg: rgb(187, 55, 79)
+@value defBg: rgb(49, 155, 107)
+
+.card
+  width: 20em
+  padding: 0 1.1em
+  margin: 1em auto
+  box-sizing: border-box
+  font-size: pxToRem(10)
+  display: inline-block
+
+  &Image
+    position: relative
+    color: #fff
+
+    &Skill, &Energy, &Attack, &Defense, &Description
+      position: absolute
+
+    &Skill, &Energy, &Attack, &Defense
+      font-family: 'Changa One', cursive;  
+
+    &Skill
+      font-size: 1.4em
+      top: 1em
+      left: 6.5%
+      width: 100%
+      display: block
+      text-align: center
+
+    &Energy
+      top: 0.2em
+      left: 0.7em
+      font-size: 2.5em
+      -webkit-text-stroke: 1px skillBorder
+      font-weight: 900
+
+    &Attack, &Defense
+      font-size: 1.95em
+      text-shadow: textBorder -2px 0px, textBorder 0px 2px, textBorder 2px 0px, textBorder 0px -2px
+      top: 2.5em
+      background: hexagon
+      border-radius: 50%
+      width: 2.1em
+      height: 2.1em
+      display: flex
+      align-items: center
+      justify-content: center
+      transform: translateX(-40%)
+      font-weight: 500
+
+      span
+        position: relative
+        z-index: 1
+
+      svg
+        position: absolute
+        z-index: 0
+        height: 70%
+        width: 70%
+
+        *
+          fill: attBg
+
+    &Attack
+      svg
+        transform: rotateZ(30deg)
+
+    &Defense
+      top: 4.75em
+      text-shadow: textBorderGreen -2px 0px, textBorderGreen 0px 2px, textBorderGreen 2px 0px, textBorderGreen 0px -2px
+
+      svg *
+        fill: defBg
+
+    &Description
+      font-weight: normal
+      bottom: 1.35em
+      line-height: 1.3em
+      font-size: 1em
+      width: 12em
+      left: 54%
+      transform: translateX(-49%)
+      height: 6em
+      display: flex
+      align-items: center
+      justify-content: center
+      color: #bbb
+      font-family: 'AvenirNext';
+
+  img
+    width: 100%

@@ -3,7 +3,7 @@
 .container
   display: flex
   align-items: center
-  justify-content: center
+  justify-content: space-between
   margin-top: 0.5em
   margin-bottom: 0.5em
 
@@ -13,12 +13,15 @@
   align-items: center
   flex-wrap: wrap
 
+  &:first-child
+    margin-left: 0
+
   &Title
     width: 100%
     font-size: pxToRem(12)
     margin-bottom: 0.5em
     text-transform: uppercase
-    color: rgba(0, 0, 0, 0.75)
+    color: var(--font-color-secondary)
 
   &Value
     margin: 0

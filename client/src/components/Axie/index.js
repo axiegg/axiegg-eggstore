@@ -6,3 +6,4 @@ export { default as AxieImage } from './AxieImage';
 export { default as AxieName } from './AxieName';
 export { default as AxiePureness } from './AxiePureness';
 export { default as AxieBadge } from './AxieBadge';
+export { default as AbilityCard } from './AbilityCard';

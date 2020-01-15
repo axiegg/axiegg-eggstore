@@ -4,8 +4,8 @@ import Box from 'components/Box';
 
 import styles from './index.module.sass'
 
-import AxieAbout from './AxieAbout';
-// import AxieAbout from './AxieAbout';
+import About from './About';
+import Abilities from './Abilities';
 
 const AxieView = ({
   axie,
@@ -34,13 +34,13 @@ const AxieView = ({
     </div>
     <div className={styles.dataContainer}>
       <h3 className={styles.dataTitle}>About</h3>
-      <Box><AxieAbout {...{ axie }} /></Box>
+      <Box><About {...{ axie }} /></Box>
       <h3 className={styles.dataTitle}>Stats</h3>
       <Box><AxieStats {...{ stats, axieClass: axie.class }} /></Box>
       <h3 className={styles.dataTitle}>Body Parts</h3>
       <Box><AxieParts {...{ parts, axieClass: axie.class }} /></Box>
       <h3 className={styles.dataTitle}>Abilities</h3>
-      <Box>Abilities here</Box>
+      <Box><Abilities {...{ parts }} /></Box>
       {parentsAxie !== null
         ? (
           <Fragment>

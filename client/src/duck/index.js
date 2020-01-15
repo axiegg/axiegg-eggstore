@@ -4,6 +4,7 @@ import web3 from './web3';
 import user from './user';
 import opensea from './opensea';
 import contracts from './contracts';
+import cards from './cards';
 
 const reducers = combineReducers({
   notifications,
@@ -11,6 +12,7 @@ const reducers = combineReducers({
   user,
   opensea,
   contracts,
+  cards,
 });
 
 export default reducers;

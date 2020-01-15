@@ -5,7 +5,7 @@ import styles from './index.module.sass'
 import TextEllipsis from 'components/TextEllipsis';
 import ExternalLink from 'components/ExternalLink';
 
-const AxieAbout = ({
+const About = ({
   axie,
   axie: {
     level,
@@ -37,4 +37,4 @@ const AxieAbout = ({
   </div>
 );
 
-export default AxieAbout;
+export default About;
