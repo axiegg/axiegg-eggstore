@@ -5,7 +5,7 @@ import Loader from 'components/Loader';
 
 import AxieView from './AxieView';
 
-import { getSingleAxie } from 'services/Axie/api';
+import { getSingleAxie } from 'services/Axie';
 
 const Axie = ({
   match: {
@@ -19,7 +19,7 @@ const Axie = ({
 
   useEffect(() => {
     const requestAxieData = async () => {
-      const { data: axieData } = await getSingleAxie(axieId);
+      const axieData = await getSingleAxie(axieId);
       setAxie(axieData);
 
       if (axieData.matronId !== 0) {

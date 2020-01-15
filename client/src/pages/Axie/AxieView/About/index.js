@@ -11,6 +11,9 @@ const About = ({
     level,
     breedCount,
     owner,
+    customData: {
+      purenessQuality,
+    },
   },
 }) => (
   <div className={styles.dataContainer}>
@@ -25,6 +28,10 @@ const About = ({
     <div className={styles.dataItem}>
       <h4 className={styles.dataTitle}>Breed Count</h4>
       <span>{breedCount}/7</span>
+    </div>
+    <div className={styles.dataItem}>
+      <h4 className={styles.dataTitle}>Pureness</h4>
+      <span>{purenessQuality.toFixed(1)}%</span>
     </div>
     <div className={styles.dataItem}>
       <h4 className={styles.dataTitle}>Owner</h4>

@@ -21,6 +21,9 @@ const AxieView = ({
     matronId,
     sireId,
     genes,
+    customData: {
+      decodedParts,
+    },
   },
   parentsAxie,
 }) => (
@@ -39,7 +42,7 @@ const AxieView = ({
       <h3 className={styles.dataTitle}>Stats</h3>
       <Box><AxieStats {...{ stats, axieClass: axie.class }} /></Box>
       <h3 className={styles.dataTitle}>Body Parts</h3>
-      <Box><AxieParts {...{ parts, genes, axieClass: axie.class }} /></Box>
+      <Box><AxieParts {...{ decodedParts, axieClass: axie.class }} /></Box>
       <h3 className={styles.dataTitle}>Abilities</h3>
       <Box><Abilities {...{ parts }} /></Box>
       {parentsAxie !== null

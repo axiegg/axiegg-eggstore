@@ -107,17 +107,17 @@ export const getPurenessQuality = (parts, axieClass) => {
     }
   });
 
-  return {
-    purenessQuality: (purenessQuality / MAX_PURENESS_QUALITY) * 100,
-  };
+  return ((purenessQuality / MAX_PURENESS_QUALITY) * 100);
 };
+
+const partOrder = [0, 2, 1, 3, 4, 5];
 
 const decodeGenes = (genes) => {
   const genesBin = genesToBin(genes);
   const groups = getGenesGroups(genesBin);
   const parts = getBodyParts(groups);
 
-  return parts;
+  return partOrder.map(i => parts[i]);
 };
 
 export default decodeGenes;

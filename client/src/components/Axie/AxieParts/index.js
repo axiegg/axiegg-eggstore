@@ -15,9 +15,9 @@ import { decodeGenes } from 'services/Axie';
 export const axieParts = [
   { name: 'eyes', icon: eyesIcon },
   { name: 'ears', icon: earsIcon },
-  { name: 'back', icon: backIcon },
-  { name: 'horn', icon: hornIcon },
   { name: 'mouth', icon: mouthIcon },
+  { name: 'horn', icon: hornIcon },
+  { name: 'back', icon: backIcon },
   { name: 'tail', icon: tailIcon },
 ];
 
@@ -27,36 +27,24 @@ export const DefIcon = <svg width="10" height="13" viewBox="936 3010 10 13"><pat
 
 export const AccuracyIcon = <svg width="14" height="14" viewBox="-1 0 15 14" color="#000"><g fillRule="evenodd"><path d="M6.64 4.28a2.44 2.44 0 1 0 0 4.879 2.44 2.44 0 0 0 0-4.879" /><path d="M9.889 7.405h.693a4.004 4.004 0 0 1-3.326 3.268v-.619a.002.002 0 0 0-.002-.002H5.932a.002.002 0 0 0-.002.002v.602A4.002 4.002 0 0 1 2.703 7.42h.578a.002.002 0 0 0 .002-.002V6.097a.002.002 0 0 0-.002-.002h-.592a4.002 4.002 0 0 1 3.224-3.31v.66c0 .002.001.003.003.003h1.322a.002.002 0 0 0 .002-.002v-.682a4.004 4.004 0 0 1 3.35 3.314h-.701a.002.002 0 0 0-.003.003v1.322l.003.002m3.387-1.358H11.94a5.285 5.285 0 0 0-4.646-4.61V.082A.002.002 0 0 0 7.292.08H5.97a.002.002 0 0 0-.002.002v1.373a5.285 5.285 0 0 0-4.52 4.61H.003A.002.002 0 0 0 0 6.065v1.321c0 .002.001.003.002.003h1.456a5.285 5.285 0 0 0 4.526 4.534v1.431c0 .001.001.003.003.003h1.321a.002.002 0 0 0 .003-.003v-1.42a5.284 5.284 0 0 0 4.623-4.562h1.342a.002.002 0 0 0 .003-.002V6.049a.002.002 0 0 0-.003-.002" /></g></svg>;
 
-export const PartStats = ({ moves }) => (
-  <div className={styles.partStats}>
-    <span className={styles.partStat}>{moves[0].attack}</span>
-    <span className={styles.partStat}>{moves[0].defense}</span>
-    <span className={styles.partStat}>{moves[0].accuracy}</span>
+const AxieParts = ({ decodedParts, className }) => (
+  <div className={classnames(styles.parts, className)}>
+    {decodedParts.map(({ d, r1, r2 }, i) => (
+      <div
+        key={`${d.name}-${d.type}`}
+        className={styles.part}
+      >
+        <div className={classnames(styles.partIcon, styles[d.type], styles[d.class])}>
+          <div className={styles.icon} style={{ backgroundImage: `url(${axieParts[i].icon})` }} />
+        </div>
+        <div className={styles.partNames}>
+          <span className={classnames(styles.partName, styles[d.class], { [styles.mystic]: d.specialGenes === 'mystic' })}>{d.name}</span>
+          <span className={classnames(styles.partName, styles[r1.class])}>{r1.name}</span>
+          <span className={classnames(styles.partName, styles[r2.class])}>{r2.name}</span>
+        </div>
+      </div>
+    ))}
   </div>
 );
-
-const AxieParts = ({ parts, genes, className }) => {
-  console.log(genes && decodeGenes(genes));
-
-  return (
-    <div className={classnames(styles.parts, className)}>
-      {parts.map((part, i) => (
-        <div
-          key={`${part.name}-${part.type}`}
-          className={classnames(
-            styles.part,
-            styles[part.class],
-            { [styles.mystic]: part.mystic },
-          )}
-        >
-          <div className={classnames(styles.partIcon, styles[part.type])}>
-            <div className={styles.icon} style={{ backgroundImage: `url(${axieParts[i].icon})` }} />
-          </div>
-          <span className={styles.partName}>{part.name}</span>
-        </div>
-      ))}
-    </div>
-  );
-};
 
 export default AxieParts;
