@@ -10,6 +10,8 @@ import hornIcon from 'assets/images/icons/horn.png';
 import backIcon from 'assets/images/icons/back.png';
 import tailIcon from 'assets/images/icons/tail.png';
 
+import { decodeGenes } from 'services/Axie';
+
 export const axieParts = [
   { name: 'eyes', icon: eyesIcon },
   { name: 'ears', icon: earsIcon },
@@ -33,24 +35,28 @@ export const PartStats = ({ moves }) => (
   </div>
 );
 
-const AxieParts = ({ parts, className }) => (
-  <div className={classnames(styles.parts, className)}>
-    {parts.map((part, i) => (
-      <div
-        key={`${part.name}-${part.type}`}
-        className={classnames(
-          styles.part,
-          styles[part.class],
-          { [styles.mystic]: part.mystic },
-        )}
-      >
-        <div className={classnames(styles.partIcon, styles[part.type])}>
-          <div className={styles.icon} style={{ backgroundImage: `url(${axieParts[i].icon})` }} />
+const AxieParts = ({ parts, genes, className }) => {
+  console.log(genes && decodeGenes(genes));
+
+  return (
+    <div className={classnames(styles.parts, className)}>
+      {parts.map((part, i) => (
+        <div
+          key={`${part.name}-${part.type}`}
+          className={classnames(
+            styles.part,
+            styles[part.class],
+            { [styles.mystic]: part.mystic },
+          )}
+        >
+          <div className={classnames(styles.partIcon, styles[part.type])}>
+            <div className={styles.icon} style={{ backgroundImage: `url(${axieParts[i].icon})` }} />
+          </div>
+          <span className={styles.partName}>{part.name}</span>
         </div>
-        <span className={styles.partName}>{part.name}</span>
-      </div>
-    ))}
-  </div>
-);
+      ))}
+    </div>
+  );
+};
 
 export default AxieParts;

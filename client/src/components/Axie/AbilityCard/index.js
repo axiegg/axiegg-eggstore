@@ -40,7 +40,7 @@ const AbilityCard = ({
   const [card, setCard] = useState(null);
 
   useEffect(() => {
-    setCard(getPartCardData(part.name));
+    setCard(getPartCardData(part));
   }, [part]);
 
   return card

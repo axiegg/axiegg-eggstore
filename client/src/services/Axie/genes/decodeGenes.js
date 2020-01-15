@@ -117,7 +117,6 @@ const decodeGenes = (genes) => {
   const groups = getGenesGroups(genesBin);
   const parts = getBodyParts(groups);
 
-  console.log(parts, 'decoded');
   return parts;
 };
 

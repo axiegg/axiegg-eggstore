@@ -8,10 +8,13 @@ const CDN_CARDS_DATA = `${CDN_CARDS}/card-abilities.json`;
 
 export const getCardSrc = key => `${CDN_CARDS}/base/${key}.png`;
 
-export const getPartCardData = (partName) => {
+export const getPartCardData = (part) => {
   const { cards } = store.getState();
+  const { moves } = part;
 
-  return cards[partName];
+  if (moves.length > 0) {
+    return cards[moves[0].name];
+  }
 }
 
 export const requestCardsData = async () => {
@@ -20,14 +23,12 @@ export const requestCardsData = async () => {
   const parsedData = {};
 
   Object.entries(data).forEach((entry) => {
-    parsedData[entry[1].partName] = {
+    parsedData[entry[1].skillName] = {
       ...entry[1],
       abilityKey: entry[0],
       src: getCardSrc(entry[0]),
     }
   });
-
-  console.log(parsedData);
 
   store.dispatch(setCardsData(parsedData));
 };

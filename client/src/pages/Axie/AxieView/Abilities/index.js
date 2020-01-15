@@ -10,7 +10,7 @@ const Abilities = ({
   cards,
 }) => (
   <div className={styles.abilities}>
-    {cards && parts.map(part => <AbilityCard {...{ part, key: part.name }} />)}
+    {cards && parts.map(part => <AbilityCard {...{ part, key: part.id }} />)}
   </div>
 );
 
