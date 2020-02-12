@@ -4,7 +4,7 @@ import { Link, withRouter } from 'react-router-dom';
 import classnames from 'classnames';
 import styles from './index.module.sass';
 
-import Logo from 'logo.png';
+import Logo from 'assets/images/logo.png';
 
 import MenuAccount from './MenuAccount';
 
