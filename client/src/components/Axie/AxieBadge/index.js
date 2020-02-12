@@ -8,6 +8,6 @@ const AxieBadge = ({ title }) => title
       <div className={styles.badge}><span>{title}</span></div>
     </div>
   )
-  : null
+  : null;
 
 export default AxieBadge;

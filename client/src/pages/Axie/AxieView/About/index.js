@@ -1,6 +1,6 @@
 import React from 'react';
 
-import styles from './index.module.sass'
+import styles from './index.module.sass';
 
 import TextEllipsis from 'components/TextEllipsis';
 import ExternalLink from 'components/ExternalLink';

@@ -6,4 +6,6 @@ export const createRequest = async (method, url, data) => axios({
   data,
 })
   .then(response => response)
-  .catch(async (error) => { console.error(error) });
+  .catch(async (error) => {
+    console.error(error);
+  });

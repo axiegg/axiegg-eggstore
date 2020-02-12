@@ -1,8 +1,6 @@
 import React from 'react';
 import classnames from 'classnames';
 
-import { classColors } from 'components/Axie/constants';
-
 import { ReactComponent as HPIcon } from 'assets/images/icons/icon-hp.svg';
 import { ReactComponent as MoraleIcon } from 'assets/images/icons/icon-morale.svg';
 import { ReactComponent as SkillIcon } from 'assets/images/icons/icon-skill.svg';

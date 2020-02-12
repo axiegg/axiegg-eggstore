@@ -43,14 +43,14 @@ const Bundle = ({
   return (
     <div className={styles.bundle}>
       <div className={styles.bundleContent}>
-        <h4 className={styles.bundleTitle}>{name}</h4>
+        <h2 className={styles.bundleTitle}>{name}</h2>
         <div className={styles.assets}>
           {assets.map((asset, i) => <BundleAsset {...{ asset, key: i }} />)}
         </div>
         <p className={styles.bundleDesc}>{description}</p>
       </div>
       {order !== null
-        ? <Button onClick={() => buyOrder(order)}>Buy for {BNToETH(order.basePrice)} ETH</Button>
+        ? <Button onClick={() => buyOrder(order)}><h4><img className="ethLogo" alt="eth" src="//axie.gg/img/ethSmall.png" /> {BNToETH(order.basePrice)} </h4></Button>
         : <p>Bundle has no fixed price.</p>
       }
     </div>

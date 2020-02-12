@@ -32,7 +32,7 @@ const Teams = ({ opensea }) => {
   return (
     <FullHeight className={styles.fullHeight}>
       <Container className={styles.container}>
-        <h1 className={styles.title}>Teams Bundles</h1>
+        <h1 className={styles.title}>AXIE.GG Team Store</h1>
         {bundlesList !== null
           ? bundlesList.length > 0
             ? (
@@ -40,7 +40,7 @@ const Teams = ({ opensea }) => {
                 {bundlesList.map(bundle => <Bundle {...{ key: bundle.slug, bundle }} />)}
               </div>
             )
-            : <p>We couldn`t find any bundles with teams</p>
+            : <p>Teams temporarily out-of-stock!  Contact us on Discord to purchase Axies.</p>
           : <Loader />
         }
       </Container>

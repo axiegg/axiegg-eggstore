@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import classnames from 'classnames';
 import styles from './index.module.sass';
 
-import { AxieParts, AxiePrice, AxieStats, AxieImage, AxieName, AxieBadge } from 'components/Axie';
+import { AxieImage, AxieName, AxieBadge } from 'components/Axie';
 import Box from 'components/Box';
 
 import { getSingleAxie } from 'services/Axie';

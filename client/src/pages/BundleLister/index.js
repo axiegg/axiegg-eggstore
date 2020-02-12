@@ -13,7 +13,6 @@ import { createBundleSellOrder } from 'services/Opensea';
 const BundleLister = () => {
   const [bundleData, setBundleData] = useState(null);
   const [parseError, setParseError] = useState(false);
-  const [fileName, setFileName] = useState('');
 
   const handleFile = (e) => {
     const file = e.target.files[0];
@@ -27,9 +26,7 @@ const BundleLister = () => {
           skipEmptyLines: true,
         });
 
-        console.log(parsedData.data);
         setBundleData(parsedData.data);
-        setFileName(file.name);
         setParseError(false);
       } catch (error) {
         setParseError(true);
@@ -41,7 +38,6 @@ const BundleLister = () => {
   };
 
   const listBundle = (bundle) => {
-    console.log(bundle);
     createBundleSellOrder(bundle);
   };
 
