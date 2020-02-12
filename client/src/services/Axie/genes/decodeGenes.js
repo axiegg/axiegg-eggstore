@@ -1,6 +1,6 @@
 import BN from 'bignumber.js';
 
-import { axieClassBin, axiePartsBinMapping, axiePartsByName } from './axieBinMappings';
+import { axiePartsBinMapping, axiePartsByName } from './axieBinMappings';
 
 export const PROBABILITIES = {
   d: 0.375,

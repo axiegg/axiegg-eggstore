@@ -16,5 +16,5 @@ export const getSingleAxie = async (id) => {
       decodedParts,
       purenessQuality,
     },
-  }
+  };
 };

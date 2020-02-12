@@ -16,6 +16,6 @@ const Abilities = ({
 
 const mapStateToProps = ({ cards }) => ({
   cards,
-})
+});
 
 export default connect(mapStateToProps)(Abilities);

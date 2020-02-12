@@ -7,7 +7,7 @@ import { FullHeight, Container } from 'components/Layout';
 const Home = () => (
   <FullHeight className={styles.fullHeight}>
     <Container className={styles.container}>
-      <h1 className={styles.title}>Egg Store</h1>
+      <h1 className={styles.title}>AXIE.GG</h1>
     </Container>
   </FullHeight>
 );
