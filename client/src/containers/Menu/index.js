@@ -4,9 +4,9 @@ import { Link, withRouter } from 'react-router-dom';
 import classnames from 'classnames';
 import styles from './index.module.sass';
 
-// import logo from 'assets/logo.png';
-
 import MenuAccount from './MenuAccount';
+
+import Logo from 'assets/images/icons/logo.png';
 
 const MENU_ITEMS = [
   { link: '/teams', title: 'Teams' },
@@ -72,7 +72,7 @@ class Menu extends Component {
       )}
       >
         <Link to="/" className={styles.logo}>
-          Logo here
+          <img alt="Axie.gg logo" src={Logo} className="" />
         </Link>
         <ul className={styles.menuList}>
           {MENU_ITEMS.map(item => (
