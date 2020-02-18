@@ -4,7 +4,7 @@ import SLPIcon from 'assets/images/icons/slp_small.png';
 
 export const AXIE_TOKEN_ADDRESS = '0xf5b0a3efb8e8e4c201e2a935f110eaaf3ffecb8d';
 // export const EGGS_WALLET = '0x0ed70f92b87ceced51a9e472fcd8d93a54a11835';
-export const EGGS_WALLET = '0x4bE640dcCE08E68EDe454202FbC59Cf5f9E8ea1f';
+export const EGGS_WALLET = '0x0ED70f92b87ceCeD51a9E472FCD8D93A54A11835';
 
 export const ERC20Mappings = {
   '0x37236cd05b34cc79d3715af2383e96dd7443dcf1': {
