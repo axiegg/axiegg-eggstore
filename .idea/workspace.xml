@@ -2,13 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ec875fec-9aa1-41ab-ac2f-9c0e2c828624" name="Default" comment="">
+      <change beforePath="" afterPath="$PROJECT_DIR$/client/src/pages/Axies/index.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/client/src/pages/Esports/index.html" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/Archive.zip" afterPath="$PROJECT_DIR$/Archive.zip" />
-      <change beforePath="$PROJECT_DIR$/client/build/asset-manifest.json" afterPath="$PROJECT_DIR$/client/build/asset-manifest.json" />
-      <change beforePath="$PROJECT_DIR$/client/build/precache-manifest.cebc8c8010e5d7d2408ea32e96c65e19.js" afterPath="$PROJECT_DIR$/client/build/precache-manifest.cebc8c8010e5d7d2408ea32e96c65e19.js" />
-      <change beforePath="$PROJECT_DIR$/client/src/assets/styles/common.module.sass" afterPath="$PROJECT_DIR$/client/src/assets/styles/common.module.sass" />
-      <change beforePath="$PROJECT_DIR$/client/src/pages/Home/index.js" afterPath="$PROJECT_DIR$/client/src/pages/Home/index.js" />
-      <change beforePath="$PROJECT_DIR$/client/src/shared/constants.js" afterPath="$PROJECT_DIR$/client/src/shared/constants.js" />
+      <change beforePath="$PROJECT_DIR$/client/src/containers/Menu/index.js" afterPath="$PROJECT_DIR$/client/src/containers/Menu/index.js" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -22,75 +19,41 @@
       <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/client/src/containers/Menu/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="353">
-              <caret line="38" column="40" lean-forward="false" selection-start-line="38" selection-start-column="40" selection-end-line="38" selection-end-column="40" />
+            <state relative-caret-position="126">
+              <caret line="14" column="2" lean-forward="true" selection-start-line="14" selection-start-column="2" selection-end-line="14" selection-end-column="2" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/client/src/pages/Teams/index.js">
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/client/src/pages/Esports/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="126">
+              <caret line="6" column="7" lean-forward="true" selection-start-line="6" selection-start-column="7" selection-end-line="6" selection-end-column="7" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/client/src/pages/Axies/index.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="168">
-              <caret line="8" column="60" lean-forward="false" selection-start-line="8" selection-start-column="60" selection-end-line="8" selection-end-column="60" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="constants.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/client/src/shared/constants.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="567">
-              <caret line="27" column="0" lean-forward="false" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
-              <folding>
-                <element signature="e#0#56#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="logo.png" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/client/src/assets/images/logo.png">
-          <provider selected="true" editor-type-id="images">
-            <state />
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/client/src/pages/Home/index.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="336">
-              <caret line="16" column="0" lean-forward="false" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
-              <folding>
-                <element signature="e#0#26#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="main.026782c4.chunk.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/client/build/static/css/main.026782c4.chunk.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="236">
-              <caret line="0" column="2677" lean-forward="false" selection-start-line="0" selection-start-column="2677" selection-end-line="0" selection-end-column="2677" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="common.module.sass" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/client/src/assets/styles/common.module.sass">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="582">
-              <caret line="83" column="22" lean-forward="true" selection-start-line="83" selection-start-column="22" selection-end-line="83" selection-end-column="22" />
+              <caret line="8" column="7" lean-forward="true" selection-start-line="8" selection-start-column="7" selection-end-line="8" selection-end-column="7" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
     </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+      </list>
+    </option>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
@@ -112,10 +75,12 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/client/src/containers/Menu/index.js" />
         <option value="$PROJECT_DIR$/client/src/shared/constants.js" />
         <option value="$PROJECT_DIR$/client/src/pages/Home/index.js" />
         <option value="$PROJECT_DIR$/client/src/assets/styles/common.module.sass" />
+        <option value="$PROJECT_DIR$/client/src/pages/Axies/index.html" />
+        <option value="$PROJECT_DIR$/client/src/containers/Menu/index.js" />
+        <option value="$PROJECT_DIR$/client/src/pages/Esports/index.html" />
       </list>
     </option>
   </component>
@@ -178,7 +143,15 @@
               <item name="axiegg-eggstore" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="client" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="pages" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="containers" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="axiegg-eggstore" type="b2602c69:ProjectViewProjectNode" />
+              <item name="axiegg-eggstore" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="client" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="containers" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="Menu" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
               <item name="axiegg-eggstore" type="b2602c69:ProjectViewProjectNode" />
@@ -186,7 +159,6 @@
               <item name="client" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="pages" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="Home" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
               <item name="axiegg-eggstore" type="b2602c69:ProjectViewProjectNode" />
@@ -194,21 +166,15 @@
               <item name="client" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="pages" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="Teams" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="Axies" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
               <item name="axiegg-eggstore" type="b2602c69:ProjectViewProjectNode" />
               <item name="axiegg-eggstore" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="client" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="services" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="axiegg-eggstore" type="b2602c69:ProjectViewProjectNode" />
-              <item name="axiegg-eggstore" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="client" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="shared" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="pages" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="Esports" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
           </expand>
           <select />
@@ -225,6 +191,12 @@
     <property name="WebServerToolWindowPanel.toolwindow.show.permissions" value="false" />
     <property name="WebServerToolWindowPanel.toolwindow.highlight.symlinks" value="true" />
     <property name="WebServerToolWindowPanel.toolwindow.highlight.mappings" value="true" />
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/client/src/pages/Esports" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -274,11 +246,18 @@
       <option name="project" value="LOCAL" />
       <updated>1582002188536</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="removed clumsiers silom additions">
+      <created>1582004854820</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1582004854820</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="3934000" />
+    <option name="totallyTimeSpent" value="4332000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="22" width="1920" height="1053" extended-state="6" />
@@ -340,7 +319,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="init commit &#10;&#10;trying to merge in clumsiers code next" />
     <MESSAGE value="Merge branch 'master' of https://bitbucket.org/axiegg/axiegg-eggstore into bensFinishedWork-preClumsy&#10;&#10;# Conflicts:&#10;#&#9;client/src/assets/images/logo.png&#10;#&#9;client/src/assets/styles/common.module.sass&#10;#&#9;client/src/components/Box/index.module.sass&#10;#&#9;client/src/containers/Menu/index.js&#10;#&#9;client/src/pages/Teams/Bundle/index.js&#10;#&#9;client/src/pages/Teams/Bundle/index.module.sass" />
-    <option name="LAST_COMMIT_MESSAGE" value="Merge branch 'master' of https://bitbucket.org/axiegg/axiegg-eggstore into bensFinishedWork-preClumsy&#10;&#10;# Conflicts:&#10;#&#9;client/src/assets/images/logo.png&#10;#&#9;client/src/assets/styles/common.module.sass&#10;#&#9;client/src/components/Box/index.module.sass&#10;#&#9;client/src/containers/Menu/index.js&#10;#&#9;client/src/pages/Teams/Bundle/index.js&#10;#&#9;client/src/pages/Teams/Bundle/index.module.sass" />
+    <MESSAGE value="removed clumsiers silom additions" />
+    <option name="LAST_COMMIT_MESSAGE" value="removed clumsiers silom additions" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -371,14 +351,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/pages/Teams/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="8" column="60" lean-forward="false" selection-start-line="8" selection-start-column="60" selection-end-line="8" selection-end-column="60" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/client/src/shared/constants.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="567">
@@ -392,14 +364,6 @@
     <entry file="file://$PROJECT_DIR$/client/src/assets/images/logo.png">
       <provider selected="true" editor-type-id="images">
         <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/containers/Menu/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="353">
-          <caret line="38" column="40" lean-forward="false" selection-start-line="38" selection-start-column="40" selection-end-line="38" selection-end-column="40" />
-          <folding />
-        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/client/src/pages/Home/index.js">
@@ -423,7 +387,41 @@
     <entry file="file://$PROJECT_DIR$/client/src/assets/styles/common.module.sass">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="582">
-          <caret line="83" column="22" lean-forward="true" selection-start-line="83" selection-start-column="22" selection-end-line="83" selection-end-column="22" />
+          <caret line="83" column="22" lean-forward="false" selection-start-line="83" selection-start-column="22" selection-end-line="83" selection-end-column="22" />
+          <folding>
+            <marker date="1582004813000" expanded="true" signature="1295:1341" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/pages/Teams/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="168">
+          <caret line="8" column="60" lean-forward="false" selection-start-line="8" selection-start-column="60" selection-end-line="8" selection-end-column="60" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/pages/Axies/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="168">
+          <caret line="8" column="7" lean-forward="true" selection-start-line="8" selection-start-column="7" selection-end-line="8" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/containers/Menu/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="14" column="2" lean-forward="true" selection-start-line="14" selection-start-column="2" selection-end-line="14" selection-end-column="2" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/pages/Esports/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="6" column="7" lean-forward="true" selection-start-line="6" selection-start-column="7" selection-end-line="6" selection-end-column="7" />
           <folding />
         </state>
       </provider>

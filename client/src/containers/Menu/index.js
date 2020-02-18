@@ -10,8 +10,8 @@ import MenuAccount from './MenuAccount';
 
 const MENU_ITEMS = [
   { link: '/teams', title: 'Teams' },
-  { link: '//axie.gg/axies/searchForm.php', title: 'Axies', target: '_blank' },
-  { link: '//esports.axie.gg', title: 'eSports', target: '_blank' },
+  { link: '/axies', title: 'Axies', target: '_blank' },
+  { link: '/esports', title: 'eSports', target: '_blank' },
 ];
 
 class Menu extends Component {
