@@ -4,14 +4,16 @@ import { Link, withRouter } from 'react-router-dom';
 import classnames from 'classnames';
 import styles from './index.module.sass';
 
+import ExternalLink from 'components/ExternalLink';
+
 import MenuAccount from './MenuAccount';
 
 import Logo from 'assets/images/icons/logo.png';
 
 const MENU_ITEMS = [
   { link: '/teams', title: 'Teams' },
-  { link: '//axie.gg/axies/searchForm.php', title: 'Axies', target: '_blank' },
-  { link: '//esports.axie.gg', title: 'eSports', target: '_blank' },
+  { link: 'http://axie.gg/axies/searchForm.php', title: 'Axies', external: true },
+  { link: 'http://esports.axie.gg/', title: 'eSports', external: true },
 ];
 
 class Menu extends Component {
@@ -72,14 +74,21 @@ class Menu extends Component {
       )}
       >
         <Link to="/" className={styles.logo}>
-          <img alt="Axie.gg logo" src={Logo} className="" />
+          <img alt="Axie.gg logo" src={Logo} />
         </Link>
         <ul className={styles.menuList}>
           {MENU_ITEMS.map(item => (
             <li key={item.link} className={styles.menuItem}>
-              <Link className={styles.menuItemLink} to={item.link}>
-                <span className={styles.menuItemTitle}>{item.title}</span>
-              </Link>
+              {item.external
+                ? (
+                  <ExternalLink className={styles.menuItemLink} href={item.link}>
+                    <span className={styles.menuItemTitle}>{item.title}</span>
+                  </ExternalLink>
+                ) : (
+                  <Link className={styles.menuItemLink} to={item.link}>
+                    <span className={styles.menuItemTitle}>{item.title}</span>
+                  </Link>
+                )}
             </li>
           ))}
         </ul>
