@@ -4,14 +4,14 @@ import { Link, withRouter } from 'react-router-dom';
 import classnames from 'classnames';
 import styles from './index.module.sass';
 
-import Logo from 'assets/images/logo.png';
+// import logo from 'assets/logo.png';
 
 import MenuAccount from './MenuAccount';
 
 const MENU_ITEMS = [
   { link: '/teams', title: 'Teams' },
-  { link: '/axies', title: 'Axies', target: '_blank' },
-  { link: '/esports', title: 'eSports', target: '_blank' },
+  { link: '//axie.gg/axies/searchForm.php', title: 'Axies', target: '_blank' },
+  { link: '//esports.axie.gg', title: 'eSports', target: '_blank' },
 ];
 
 class Menu extends Component {
@@ -72,7 +72,7 @@ class Menu extends Component {
       )}
       >
         <Link to="/" className={styles.logo}>
-          <img alt="" src={Logo} className="" />
+          Logo here
         </Link>
         <ul className={styles.menuList}>
           {MENU_ITEMS.map(item => (
