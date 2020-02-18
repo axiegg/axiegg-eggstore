@@ -6,7 +6,8 @@ import Axie from 'components/Axie';
 import styles from './index.module.sass';
 
 import { buyOrder } from 'services/Opensea';
-import { BNToETH } from 'services/Web3Service';
+import { BNToNumber, BNToETH } from 'services/Web3Service';
+import { ERC20Mappings } from 'shared/constants';
 
 const BundleAsset = ({
   asset: {
@@ -50,7 +51,17 @@ const Bundle = ({
         <p className={styles.bundleDesc}>{description}</p>
       </div>
       {order !== null
-        ? <Button onClick={() => buyOrder(order)}><h4><img className="ethLogo" alt="eth" src="//axie.gg/img/ethSmall.png" /> {BNToETH(order.basePrice)} </h4></Button>
+        ? (
+          <Button className={styles.button} onClick={() => buyOrder(order)}>
+            <h4>
+              <img className={styles.tokenLogo} alt={ERC20Mappings[order.paymentToken].name} src={ERC20Mappings[order.paymentToken].icon} />
+              <span>{ERC20Mappings[order.paymentToken].convertOnly
+                ? BNToNumber(order.basePrice)
+                : BNToETH(order.basePrice)}
+              </span>
+            </h4>
+          </Button>
+        )
         : <p>Bundle has no fixed price.</p>
       }
     </div>

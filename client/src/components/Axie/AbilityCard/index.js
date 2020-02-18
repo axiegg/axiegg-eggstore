@@ -45,7 +45,7 @@ const AbilityCard = ({
 
   return card
     ? <AbilityCardView {...{ card }} />
-    : null
-}
+    : null;
+};
 
 export default AbilityCard;

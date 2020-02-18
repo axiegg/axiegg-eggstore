@@ -17,6 +17,14 @@ export const getPartCardData = (part) => {
       return cards['Piercing Sound'];
     }
 
+    if (moves[0].name === 'Dirty Bird') {
+      return cards['Ill-omened'];
+    }
+
+    if (moves[0].name === 'Kotaro Bite') {
+      return cards['Kotaro bite'];
+    }
+
     return cards[moves[0].name];
   }
 };

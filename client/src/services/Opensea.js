@@ -14,7 +14,7 @@ export const buyOrder = (order) => {
 
 export const createBundleSellOrder = (bundle) => {
   const { user, opensea } = store.getState();
-  const { Name, Description, Price, assets } = bundle;
+  const { Name, Description, Price, assets, Token } = bundle;
 
   opensea.createBundleSellOrder({
     assets: assets.map(id => ({
@@ -26,5 +26,6 @@ export const createBundleSellOrder = (bundle) => {
     startAmount: Price,
     accountAddress: user.address,
     referrerAddress: EGGS_WALLET,
+    paymentTokenAddress: Token,
   });
 };

@@ -10,8 +10,6 @@ import hornIcon from 'assets/images/icons/horn.png';
 import backIcon from 'assets/images/icons/back.png';
 import tailIcon from 'assets/images/icons/tail.png';
 
-import { decodeGenes } from 'services/Axie';
-
 export const axieParts = [
   { name: 'eyes', icon: eyesIcon },
   { name: 'ears', icon: earsIcon },
