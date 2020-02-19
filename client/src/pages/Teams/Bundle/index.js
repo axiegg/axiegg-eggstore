@@ -44,7 +44,7 @@ const Bundle = ({
   return (
     <div className={styles.bundle}>
       <div className={styles.bundleContent}>
-        <h2 className={styles.bundleTitle}>{name}</h2>
+        <h3 className={styles.bundleTitle}>{name}</h3>
         <div className={styles.assets}>
           {assets.map((asset, i) => <BundleAsset {...{ asset, key: i }} />)}
         </div>

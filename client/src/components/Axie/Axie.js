@@ -31,6 +31,7 @@ const AxieView = ({
     id,
     breedCount,
     title,
+    name,
   },
   className,
 }) => (
@@ -42,6 +43,7 @@ const AxieView = ({
         <p className={styles.breeds}>Breeds: {breedCount}/7&nbsp;</p>
       </div>
       <AxieImage {...{ id, className: styles.axieImage }} />
+      <p className={styles.axieName}>{name}</p>
     </Box>
   </Link>
 );
