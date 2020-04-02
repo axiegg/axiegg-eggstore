@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import styles from './index.module.sass';
 
 import { FullHeight, Container } from 'components/Layout';
+import { Image } from 'components/Image';
 import Loader from 'components/Loader';
 
 import { AXIE_TOKEN_ADDRESS, EGGS_WALLET } from 'shared/constants';

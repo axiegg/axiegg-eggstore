@@ -1,18 +1,22 @@
 @import 'assets/styles/functions.module.sass'
 
+.grid
+  display: grid
+  grid-template-columns: auto auto auto
+  padding: pxToRem(40)
+
 .bundle
-  margin-bottom: pxToRem(80)
-  width: 50%
-  display: flex
-  flex-wrap: wrap
-  flex-direction: column
-  justify-content: space-between
-  padding: 0 pxToRem(40)
-  box-sizing: border-box
+  margin: pxToRem(42) 0
+  width: 100%
+  background: linear-gradient(to left bottom, #ee0979, #ff6a00)
 
   &Desc
     font-size: pxToRem(16)
     text-align: left
+    padding: 0 pxToRem(40)
+
+  &Content
+    display: block
 
   .button
     h4
@@ -36,3 +40,29 @@
   width: 40px
   margin-right: 5px
   display: inline
+
+.topLayer
+  width: 100%
+  height: 42px
+  color: red
+  background-image: url(/assets/purple-border.png)
+  margin-bottom: pxToRem(42)
+  transform: scaleY(-1) translateY(1px)
+
+.bottomLayer
+  width: 100%
+  height: 42px
+  color: red
+  background-image: url(/assets/purple-border.png)
+  margin-top: pxToRem(42)
+  transform: translateY(1px)
+
+
+.leftArrow
+  margin-top: 30vh
+  overflow: auto
+
+.rightArrow
+  margin-top: 30vh
+  overflow: auto
+  transform: scaleX(-1)
