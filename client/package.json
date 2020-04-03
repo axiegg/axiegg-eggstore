@@ -44,7 +44,7 @@
     "build": "react-app-rewired build",
     "test": "react-app-rewired test",
     "eject": "react-app-rewired eject",
-    "deploy": "echo \"axiegg.surge.sh\" ; surge ./build"
+    "deploy": "echo \"axiegg.surge.sh\" > ./build/CNAME; surge ./build"
   },
   "browserslist": [
     ">0.2%",
