@@ -1,0 +1,43 @@
+@import 'assets/styles/functions.module.sass'
+
+.axie
+  width: pxToRem(215)
+  margin: 0 0.75% 1.5%
+  text-align: center
+  box-sizing: border-box
+  overflow: hidden
+  font-size: pxToRem(16)
+  display: inline-block
+
+  &Image
+    margin: 0 auto pxToRem(20)!important
+
+  &Name
+    font-size: .8em
+
+.expContainer, .breeds
+  position: relative
+  z-index: 1
+
+.breedContainer
+  margin-top: 0.25em
+  font-size: 0.9em
+  display: flex
+  align-items: center
+  justify-content: center
+
+.breeds
+  margin: 0 0.1em
+
+  &Available
+    font-size: 0.9em
+
+.axieImg
+  width: 100%
+  max-width: pxToRem(220)
+  min-width: pxToRem(180)
+  margin: -1.5rem auto
+  display: block
+  left: 50%
+  transform: translateX(-50%)
+  position: relative
