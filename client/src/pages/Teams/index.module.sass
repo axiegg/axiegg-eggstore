@@ -21,7 +21,8 @@
 .bundle
   margin: pxToRem(42) 0
   width: 100%
-  background: linear-gradient(to left bottom, #ee0979, #ff6a00)
+  background: linear-gradient(to left bottom, #ffffff, #abbaab)
+  color: black
 
   &Desc
     font-size: pxToRem(16)
@@ -43,24 +44,30 @@
 .bottomLayer
   width: 100%
   height: 42px
-  color: red
   background-image: url(/assets/purple-border.png)
   margin-top: pxToRem(42)
   transform: translateY(1px)
 
 
 .leftArrow
-  margin-top: 30vh
   overflow: auto
   cursor: pointer
+  background-image: url(/assets/arrow.png)
+  background-repeat: no-repeat
+  background-position: center center
+  background-size: 20px
+  transform: scaleX(-1)
 
 .rightArrow
-  margin-top: 30vh
   overflow: auto
-  transform: scaleX(-1)
   cursor: pointer
+  background-image: url(/assets/arrow.png)
+  background-repeat: no-repeat
+  background-position: center center
+  background-size: 20px
 
 .grid
   display: grid
-  grid-template-columns: auto auto auto
-  padding: pxToRem(40)
+  grid-template-columns: 1fr 8fr 1fr
+  grid-template-areas: "leftArrow AxieBundle rightArrow"
+  padding: pxToRem(40) 17%

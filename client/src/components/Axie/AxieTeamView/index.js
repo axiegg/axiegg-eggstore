@@ -29,7 +29,6 @@ const AxieTeamView = ({
         <Box>
           <AxieName {...{ name: `#${tokenId}`, axieClass: axie.class }} />
           <AxieBadge {...{ title }} />
-          <div className={styles.breedContainer} />
           <Image
             className={classnames(styles.axieImg, className)}
             src={getAxiePNG(tokenId)}

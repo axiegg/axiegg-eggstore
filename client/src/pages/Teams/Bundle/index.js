@@ -27,7 +27,7 @@ const Bundle = ({
   },
   order,
 }) => (
-  <div>
+  <div className="AxieBundle">
     <div className={styles.bundleContent}>
       <h3 className={styles.bundleTitle}>{name}</h3>
       <div className={styles.assets}>
@@ -39,13 +39,11 @@ const Bundle = ({
     {order !== null
       ? (
         <Button className={styles.button} onClick={() => buyOrder(order)}>
-          <h4>
-            <img className={styles.tokenLogo} alt={ERC20Mappings[order.paymentToken].name} src={ERC20Mappings[order.paymentToken].icon} />
-            <span>{ERC20Mappings[order.paymentToken].convertOnly
-              ? BNToNumber(order.basePrice)
-              : BNToETH(order.basePrice)}
-            </span>
-          </h4>
+          <img className={styles.tokenLogo} alt={ERC20Mappings[order.paymentToken].name} src={ERC20Mappings[order.paymentToken].icon} />
+          <span>{ERC20Mappings[order.paymentToken].convertOnly
+            ? BNToNumber(order.basePrice)
+            : BNToETH(order.basePrice)}
+          </span>
         </Button>
       )
       : <p>Bundle has no fixed price.</p>
