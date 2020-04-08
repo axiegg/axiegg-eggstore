@@ -18,16 +18,13 @@ const Home = () => (
             <div className={styles.upperText}>
               <img src={fullLogo} alt="Full Logo" />
             </div>
-            <h1>Shop from over 8000 Axies!</h1>
+            <h1>Shop for Individual Axies or Complete Teams!</h1>
 
             <div className={styles.buttons}>
-              <a href="/teams" className={styles.homeButton}>Team Bundles</a>
-              <a href="/axies" className={styles.homeButton}>Lone Axies</a>
+              <a href="/teams" className={styles.homeButton}>Teams</a>
+              <a href="/axies" className={styles.homeButton}>Axies</a>
             </div>
 
-          </div>
-          <div className={styles.rightCol}>
-            <img src={redAxie} alt="Red Axie" />
           </div>
         </div>
       </div>
