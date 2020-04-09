@@ -8,7 +8,7 @@ import ExternalLink from 'components/ExternalLink';
 
 import MenuAccount from './MenuAccount';
 
-import Logo from 'assets/images/icons/logo.png';
+import Logo from 'assets/images/icons/notext-logo.png';
 
 const MENU_ITEMS = [
   { link: '/teams', title: 'Teams' },

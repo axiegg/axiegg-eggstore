@@ -1,4 +1,5 @@
 @import 'assets/styles/functions.module.sass'
+@value font-color, nav-height, tablet from 'assets/styles/variables.module.sass'
 
 .fullHeight
   text-align: center
@@ -8,7 +9,6 @@
   position: relative
   z-index: 1
   font-size: pxToRem(20)
-
 
 .title
   font-weight: 900
@@ -51,3 +51,77 @@
 
   &Container
     margin-top: 2em
+
+  
+.wrapper
+  padding: 5% 15%
+
+.banner
+  background-color: white
+  color: black
+
+.bannerWrapper
+  padding: 5% 15%
+  display: grid
+  grid-template-columns: 10fr 0fr
+  grid-template-areas: "col1 col2"
+  grid-column-gap: 1em
+
+  h1
+    font-size: pxToRem(70)
+    margin: 0
+    padding: 0
+
+  .buttons
+    display: grid
+    grid-template-columns: 5fr 5fr
+    grid-template-areas: "lBtn rBtn"
+    grid-column-gap: 1em
+    padding: pxToRem(30) 0
+
+.upperText
+  img
+    height: 42px
+
+.leftCol
+  grid-area: col1
+  text-align: center
+
+.rightCol
+  grid-area: col2
+
+.homeButton
+  display: block
+  padding: pxToRem(8) pxToRem(15)
+  border-radius: pxToRem(20)
+  background-color: var(--some-blue)
+  color: white
+  margin: pxToRem(10)
+  text-align: center
+  cursor: pointer
+
+.cardsWrapper
+  padding: 5% 5%
+  display: grid
+  grid-template-columns: 5fr 5fr
+  grid-template-areas: "cardItem cardItem"
+  grid-column-gap: 1em
+
+.cardItems
+  margin: pxToRem(50) 0
+
+  .cardItem
+    background-color: white
+    color: black
+
+    iframe
+      width: 100%
+      height: pxToRem(240)
+      border: none
+
+    img
+      width: 80%
+      margin: 0 auto
+
+    p
+      text-align: left
