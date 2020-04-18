@@ -51,7 +51,7 @@ const Search = ({ opensea }) => {
         {bundlesList !== null
           ? bundlesList.length > 0
             ? (
-              bundlesList.map((bundle, i) => <Bundle bundle={bundle} />)
+              bundlesList.map((bundle, i) => <Bundle key={i} bundle={bundle} />)
             )
             : <p>Teams temporarily out of stock! Contact us on Discord to purchase Axies.</p>
           : <Loader />

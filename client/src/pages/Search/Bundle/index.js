@@ -11,14 +11,56 @@ import { buyOrder } from 'services/Opensea';
 import { BNToNumber, BNToETH } from 'services/Web3Service';
 import { ERC20Mappings } from 'shared/constants';
 
+import Image from 'components/Image';
+import { getAxiePNG } from 'services/Axie';
+
+const AxieListView = ({
+  axie,
+  axie: {
+    id,
+    tokenId,
+    breedCount,
+    title,
+    name,
+  },
+  axieCount,
+}) => {
+  console.log('Axie Search list view');
+
+  return (
+    <div className={classnames(styles.image, styles.classOne)}>
+      <Image
+        src={getAxiePNG(tokenId)}
+        alt={`Axie #${tokenId}`}
+      />
+      <a href="/">{name}</a>
+    </div>
+  );
+}
+
 
 const BundleAsset = ({
   asset,
+  className,
 }) => (
-  <div className={styles.asset}>
-    <AxieTeamView axie={asset} />
-  </div>
+  <AxieListView axie={asset} axieCount={className} />
 );
+
+function indexToClassName(i) {
+  switch (i) {
+    case 0:
+      return 'classOne';
+
+    case 1:
+      return 'classTwo';
+
+    case 2:
+      return 'classThree';
+
+    default:
+      return '';
+  }
+}
 
 const Bundle = ({
   bundle: {
@@ -27,36 +69,15 @@ const Bundle = ({
     sellOrders,
     description,
   },
-  order,
 }) => (
   <div>
-    <div className="AxieSearchItem">
-      <div className={styles.bundleContent}>
-        <h3 className={styles.bundleTitle}>{name}</h3>
-        <div className={styles.assets}>
-          {assets.map((asset, i) => <BundleAsset asset={asset} />)}
-        </div>
-        <p className={styles.bundleDesc}>{description}</p>
-      </div>
-    </div>
     <div className={styles.listItem}>
       <div className={styles.teamWrapper}>
-        <div className={classnames(styles.image, styles.classOne)}>
-          <a href="/"><img src="https://storage.googleapis.com/assets.axieinfinity.com/axies/142408/axie/axie-full-transparent.png" alt="asd" /></a>
-          <a href="/">#213123</a>
-        </div>
-        <div className={classnames(styles.image, styles.classTwo)}>
-          <a href="/"><img src="https://storage.googleapis.com/assets.axieinfinity.com/axies/142408/axie/axie-full-transparent.png" alt="asd" /></a>
-          <a href="/">#213123</a>
-        </div>
-        <div className={classnames(styles.image, styles.classThree)}>
-          <a href="/"><img src="https://storage.googleapis.com/assets.axieinfinity.com/axies/142408/axie/axie-full-transparent.png" alt="asd" /></a>
-          <a href="/">#213123</a>
-        </div>
+        {assets.map((asset, i) => <BundleAsset key={i} asset={asset} className={indexToClassName(i)} />)}
         <div className={styles.info}>
-          <div className={styles.title}>Team One</div>
+          <div className={styles.title}>{name}</div>
           <div className={styles.description}>
-            This Team allows the player to make multiple decisions to influence the outcome of the gam...
+            {description}
           </div>
         </div>
         <div className={styles.price}>
