@@ -41,7 +41,6 @@ const Teams = ({ opensea }) => {
       const { bundles } = await opensea.api.getBundles({
         owner: EGGS_WALLET,
         asset_contract_address: AXIE_TOKEN_ADDRESS,
-        on_sale: true,
       });
 
       console.log(bundles);

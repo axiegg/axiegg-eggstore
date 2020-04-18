@@ -36,7 +36,7 @@ const Bundle = ({
       <p className={styles.bundleDesc}>{description}</p>
     </div>
 
-    {order !== null
+    {order !== null && order !== undefined
       ? (
         <Button className={styles.button} onClick={() => buyOrder(order)}>
           <img className={styles.tokenLogo} alt={ERC20Mappings[order.paymentToken].name} src={ERC20Mappings[order.paymentToken].icon} />
