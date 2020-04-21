@@ -8,7 +8,8 @@ import NotificationsList from 'containers/NotificationsList';
 import NotFound from 'pages/NotFound';
 
 import Home from 'pages/Home';
-import Search from 'pages/Search';
+import SearchTeam from 'pages/Search/Team';
+import SearchAxie from 'pages/Search/Axie';
 import Teams from 'pages/Teams';
 import Profile from 'pages/Profile';
 import BundleLister from 'pages/BundleLister';
@@ -25,7 +26,8 @@ const Routes = () => (
           <Route path="/bundle-lister" component={BundleLister} />
           <Route path="/profile/:address" component={Profile} />
           <Route path="/teams" component={Teams} />
-          <Route path="/search" component={Search} />
+          <Route path="/search/team" component={SearchTeam} />
+          <Route path="/search/axie" component={SearchAxie} />
           <Route path="/" exact component={Home} />
           <Route path="/" component={NotFound} />
         </Switch>

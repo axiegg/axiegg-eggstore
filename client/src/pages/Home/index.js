@@ -24,7 +24,6 @@ const Home = () => (
               <a href="/teams" className={styles.homeButton}>Teams</a>
               <a href="/axies" className={styles.homeButton}>Axies</a>
             </div>
-
           </div>
         </div>
       </div>
