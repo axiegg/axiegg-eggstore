@@ -27,7 +27,7 @@ const Routes = () => (
           <Route path="/profile/:address" component={Profile} />
           <Route path="/teams" component={Teams} />
           <Route path="/search/teams" component={SearchTeams} />
-          <Route path="/search/axies" component={SearchAxies} />
+          <Route path="/search/axies/:pageId" component={SearchAxies} />
           <Route path="/" exact component={Home} />
           <Route path="/" component={NotFound} />
         </Switch>

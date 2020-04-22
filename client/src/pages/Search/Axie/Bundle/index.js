@@ -12,6 +12,7 @@ import { BNToNumber, BNToETH } from 'services/Web3Service';
 import { ERC20Mappings } from 'shared/constants';
 
 import Image from 'components/Image';
+import { getAxiePNG } from 'services/Axie';
 
 const SvgImage = () => (
   <Image
@@ -33,7 +34,7 @@ const Bundle = ({
 
       <div className={classnames(styles.image, styles.classOne)}>
         <Image
-          src={imageUrl}
+          src={getAxiePNG(tokenId)}
           alt="[image]"
         />
         <a href="/">{name}</a>

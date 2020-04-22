@@ -14,22 +14,29 @@ import { BNToNumber, BNToETH } from 'services/Web3Service';
 
 import Bundle from './Bundle';
 
-const SearchAxies = ({ opensea }) => {
+const SearchAxies = ({
+  opensea,
+  match: {
+    params: {
+      pageId,
+    },
+  },
+}) => {
   const [axies, setAxies] = useState(null);
-  const [count, setCount] = useState(0);
   const [order, setOrder] = useState(null);
 
   useEffect(() => {
     const getOrders = async () => {
       console.log('Opensea API: ', opensea.api);
       let _axies = []
+      console.log(opensea.api);
 
       try {
         _axies = await opensea.api.getAssets({
           owner: EGGS_WALLET,
           asset_contract_address: AXIE_TOKEN_ADDRESS,
           limit: 20,
-        });
+        }, pageId);
       } catch (err) {
         console.log('Failed: ', err);
       }
@@ -48,6 +55,7 @@ const SearchAxies = ({ opensea }) => {
     <FullHeight className={styles.fullHeight}>
       <Container className={styles.container}>
         <h1 className={styles.title}>Axie Search Results</h1>
+        <h3><a href={`/search/axies/${parseInt(pageId, 10) - 1}`}>Prev page</a> Page {pageId} <a href={`/search/axies/${parseInt(pageId, 10) + 1}`}>Next page</a></h3>
         <div className="axieList">
           {axies !== null
             ? axies.length > 0
@@ -58,6 +66,7 @@ const SearchAxies = ({ opensea }) => {
             : <Loader />
           }
         </div>
+        <h3><a href={`/search/axies/${parseInt(pageId, 10) - 1}`}>Prev page</a> Page {pageId} <a href={`/search/axies/${parseInt(pageId, 10) + 1}`}>Next page</a></h3>
       </Container>
     </FullHeight>
   );
