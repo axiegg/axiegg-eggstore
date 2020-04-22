@@ -24,20 +24,15 @@ const AxieListView = ({
     name,
   },
   axieCount,
-}) => {
-  console.log('Axie Search list view');
-
-  return (
-    <div className={classnames(styles.image, styles.classOne)}>
-      <Image
-        src={getAxiePNG(tokenId)}
-        alt={`Axie #${tokenId}`}
-      />
-      <a href="/">{name}</a>
-    </div>
-  );
-}
-
+}) => (
+  <div className={classnames(styles.image, styles.classOne)}>
+    <Image
+      src={getAxiePNG(tokenId)}
+      alt={`Axie #${tokenId}`}
+    />
+    <a href="/">{name}</a>
+  </div>
+);
 
 const BundleAsset = ({
   asset,
@@ -45,22 +40,6 @@ const BundleAsset = ({
 }) => (
   <AxieListView axie={asset} axieCount={className} />
 );
-
-function indexToClassName(i) {
-  switch (i) {
-    case 0:
-      return 'classOne';
-
-    case 1:
-      return 'classTwo';
-
-    case 2:
-      return 'classThree';
-
-    default:
-      return '';
-  }
-}
 
 const Bundle = ({
   bundle: {
@@ -73,7 +52,7 @@ const Bundle = ({
   <div>
     <div className={styles.listItem}>
       <div className={styles.teamWrapper}>
-        {assets.map((asset, i) => <BundleAsset key={i} asset={asset} className={indexToClassName(i)} />)}
+        {assets.map((asset, i) => <BundleAsset key={i} asset={asset} className="classOne" />)}
         <div className={styles.info}>
           <div className={styles.title}>{name}</div>
           <div className={styles.description}>

@@ -12,29 +12,29 @@ import { AXIE_TOKEN_ADDRESS, EGGS_WALLET, ERC20Mappings } from 'shared/constants
 import { buyOrder } from 'services/Opensea';
 import { BNToNumber, BNToETH } from 'services/Web3Service';
 
-
 import Bundle from './Bundle';
 
-const Search = ({ opensea }) => {
-  const [bundlesList, setBundlesList] = useState(null);
+const SearchAxies = ({ opensea }) => {
+  const [axies, setAxies] = useState(null);
   const [count, setCount] = useState(0);
   const [order, setOrder] = useState(null);
 
   useEffect(() => {
     const getOrders = async () => {
-      const { bundles } = await opensea.api.getBundles({
-        owner: EGGS_WALLET,
-        asset_contract_address: AXIE_TOKEN_ADDRESS,
-      });
+      console.log('Opensea API: ', opensea.api);
+      let _axies = []
 
-      console.log(bundles);
-
-      if (bundles[count].sellOrders.length > 0) {
-        const sortedSellOrders = bundles[count].sellOrders.sort((a, b) => BNToETH(a.basePrice) > BNToETH(b.basePrice));
-        setOrder(sortedSellOrders[0]);
+      try {
+        _axies = await opensea.api.getAssets({
+          owner: EGGS_WALLET,
+          asset_contract_address: AXIE_TOKEN_ADDRESS,
+          limit: 20,
+        });
+      } catch (err) {
+        console.log('Failed: ', err);
       }
 
-      setBundlesList(bundles);
+      setAxies(_axies.assets);
     };
 
     if (opensea !== null) {
@@ -42,20 +42,22 @@ const Search = ({ opensea }) => {
     }
   }, [opensea]);
 
-  console.log(bundlesList);
+  console.log('Axies: ', axies);
 
   return (
     <FullHeight className={styles.fullHeight}>
       <Container className={styles.container}>
-        <h1 className={styles.title}>Search Results</h1>
-        {bundlesList !== null
-          ? bundlesList.length > 0
-            ? (
-              bundlesList.map((bundle, i) => <Bundle key={i} bundle={bundle} />)
-            )
-            : <p>Teams temporarily out of stock! Contact us on Discord to purchase Axies.</p>
-          : <Loader />
-        }
+        <h1 className={styles.title}>Axie Search Results</h1>
+        <div className="axieList">
+          {axies !== null
+            ? axies.length > 0
+              ? (
+                axies.map((axie, i) => <Bundle key={i} bundle={axie} />)
+              )
+              : <p>Axies temporarily out of stock! Contact us on Discord to purchase Axies.</p>
+            : <Loader />
+          }
+        </div>
       </Container>
     </FullHeight>
   );
@@ -65,4 +67,4 @@ const mapStateToProps = ({ opensea }) => ({
   opensea,
 });
 
-export default connect(mapStateToProps)(Search);
+export default connect(mapStateToProps)(SearchAxies);

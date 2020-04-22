@@ -12,10 +12,9 @@ import { AXIE_TOKEN_ADDRESS, EGGS_WALLET, ERC20Mappings } from 'shared/constants
 import { buyOrder } from 'services/Opensea';
 import { BNToNumber, BNToETH } from 'services/Web3Service';
 
-
 import Bundle from './Bundle';
 
-const Search = ({ opensea }) => {
+const SearchTeams = ({ opensea }) => {
   const [bundlesList, setBundlesList] = useState(null);
   const [count, setCount] = useState(0);
   const [order, setOrder] = useState(null);
@@ -26,8 +25,6 @@ const Search = ({ opensea }) => {
         owner: EGGS_WALLET,
         asset_contract_address: AXIE_TOKEN_ADDRESS,
       });
-
-      console.log(bundles);
 
       if (bundles[count].sellOrders.length > 0) {
         const sortedSellOrders = bundles[count].sellOrders.sort((a, b) => BNToETH(a.basePrice) > BNToETH(b.basePrice));
@@ -41,8 +38,6 @@ const Search = ({ opensea }) => {
       getOrders();
     }
   }, [opensea]);
-
-  console.log(bundlesList);
 
   return (
     <FullHeight className={styles.fullHeight}>
@@ -65,4 +60,4 @@ const mapStateToProps = ({ opensea }) => ({
   opensea,
 });
 
-export default connect(mapStateToProps)(Search);
+export default connect(mapStateToProps)(SearchTeams);
