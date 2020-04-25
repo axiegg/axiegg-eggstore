@@ -32,7 +32,7 @@ const Home = () => (
           <div className={styles.wrapper}>
             <h1>Featured Axies</h1>
             <img src="https://pbs.twimg.com/media/EUwcZThX0AMiXOC?format=jpg&name=medium" alt="card" />
-            <a href="/search/axies" className={styles.homeButton}>Show more</a>
+            <a href="/search/axies/1" className={styles.homeButton}>Show more</a>
           </div>
         </div>
       </div>

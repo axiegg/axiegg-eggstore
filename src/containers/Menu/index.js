@@ -12,7 +12,7 @@ import Logo from 'assets/images/icons/notext-logo.png';
 
 const MENU_ITEMS = [
   { link: '/search/teams', title: 'Teams' },
-  { link: '/search/axies', title: 'Axies', external: true },
+  { link: '/search/axies/1', title: 'Axies' },
   { link: 'http://esports.axie.gg/', title: 'eSports', external: true },
 ];
 
