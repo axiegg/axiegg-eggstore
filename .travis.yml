@@ -13,6 +13,7 @@ cache: yarn
 scripts:
   - yarn run test
   - yarn run build
+  - mv ./build/index.html ./build/200.html
 
 branches:
   only:

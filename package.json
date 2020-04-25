@@ -42,7 +42,7 @@
   },
   "scripts": {
     "start": "react-app-rewired start",
-    "build": "react-app-rewired build --verbose; mv ./build/index.html ./build/200.html",
+    "build": "react-app-rewired build",
     "test": "echo \"No tests\"",
     "eject": "react-app-rewired eject"
   },
