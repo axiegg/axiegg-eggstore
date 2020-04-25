@@ -12,6 +12,10 @@ build
 # yarn output
 yarn-debug.log*
 yarn-error.log*
+<<<<<<< HEAD
+=======
+#yarn.lock
+>>>>>>> master
 
 # pm2 script
 start.sh
