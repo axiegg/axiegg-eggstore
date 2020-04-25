@@ -72,11 +72,11 @@ const Teams = ({ opensea }) => {
 
                 <div className={styles.grid}>
 
-                  <div role="button" className={styles.leftArrow} onClick={() => { rotateCounter('left', bundlesList.length - 1) }} tabIndex={count} />
+                  <div role="button" className={styles.leftArrow} onClick={() => { rotateCounter('left', bundlesList.length - 1); }} tabIndex={count} />
 
                   <Bundle bundle={bundlesList[count]} order={order} />
 
-                  <div role="button" className={styles.rightArrow} onClick={() => { rotateCounter('right', bundlesList.length - 1) }} tabIndex={count} />
+                  <div role="button" className={styles.rightArrow} onClick={() => { rotateCounter('right', bundlesList.length - 1); }} tabIndex={count} />
 
                 </div>
 
