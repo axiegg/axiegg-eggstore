@@ -81,6 +81,7 @@
 
 .upperText
   img
+    width: auto
     height: 42px
 
 .leftCol
@@ -125,3 +126,24 @@
 
     p
       text-align: left
+
+.featuredGrid
+  display: grid
+  grid-template-columns: 2.5fr 6.5fr
+  grid-template-areas: "axies teams" 
+  padding: pxToRem(40) 1%
+
+.axies
+  grid-area: axies
+  padding: pxToRem(41) 1%
+
+.axies > .wrapper
+  background-color: white
+  color: black
+  overflow: auto
+  height: 100%
+
+
+
+.teams
+  grid-area: teams
