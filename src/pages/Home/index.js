@@ -8,6 +8,8 @@ import redAxie from 'assets/images/icons/red-axie.png';
 
 import { FullHeight, Container } from 'components/Layout';
 
+import Teams from 'pages/Teams';
+
 const Home = () => (
   <FullHeight className={styles.fullHeight}>
     <Container className={styles.container}>
@@ -19,11 +21,18 @@ const Home = () => (
               <img src={fullLogo} alt="Full Logo" />
             </div>
             <h1>Shop for Individual Axies or Complete Teams!</h1>
-
-            <div className={styles.buttons}>
-              <a href="/teams" className={styles.homeButton}>Teams</a>
-              <a href="/axies" className={styles.homeButton}>Axies</a>
-            </div>
+          </div>
+        </div>
+      </div>
+      <div className={styles.featuredGrid}>
+        <div className={styles.teams}>
+          <Teams />
+        </div>
+        <div className={styles.axies}>
+          <div className={styles.wrapper}>
+            <h1>Featured Axies</h1>
+            <img src="https://pbs.twimg.com/media/EUwcZThX0AMiXOC?format=jpg&name=medium" alt="card" />
+            <a href="/search/axies" className={styles.homeButton}>Show more</a>
           </div>
         </div>
       </div>

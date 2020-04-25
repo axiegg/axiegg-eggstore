@@ -61,30 +61,29 @@ const Teams = ({ opensea }) => {
   return (
     <FullHeight className={styles.fullHeight}>
       <Container className={styles.container}>
-        <h1 className={styles.title}>AXIE.GG Team Store</h1>
         {bundlesList !== null
           ? bundlesList.length > 0
             ? (
               <div className={styles.bundle}>
-
-                <div className={styles.topLayer} />
+                <h1>Featured Teams</h1>
 
                 <div className={styles.grid}>
 
-                  <div role="button" className={styles.leftArrow} onClick={() => { rotateCounter('left', bundlesList.length - 1) }} tabIndex={count} />
+                  <div role="button" className={styles.leftArrow} onClick={() => { rotateCounter('left', bundlesList.length - 1); }} tabIndex={count} />
 
                   <Bundle bundle={bundlesList[count]} order={order} />
 
-                  <div role="button" className={styles.rightArrow} onClick={() => { rotateCounter('right', bundlesList.length - 1) }} tabIndex={count} />
+                  <div role="button" className={styles.rightArrow} onClick={() => { rotateCounter('right', bundlesList.length - 1); }} tabIndex={count} />
 
                 </div>
 
-                <div className={styles.bottomLayer} />
+                <a href="/search/teams" className={styles.homeButton}>Show more</a>
               </div>
             )
             : <p>Teams temporarily out-of-stock!  Contact us on Discord to purchase Axies.</p>
           : <Loader />
         }
+
       </Container>
     </FullHeight>
   );
