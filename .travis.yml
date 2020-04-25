@@ -1,0 +1,19 @@
+language: node_js
+before_install:
+  - echo -e "machine github.com\n  login $CI_USER_TOKEN" > ~/.netrc
+node_js:
+  - "13"
+cache: yarn
+
+scripts:
+  - yarn run test
+  - yarn run build
+
+deploy:
+  provider: surge
+  domain: axiegg.surge.sh
+  project: ./build/
+  skip_cleanup: true
+  edge: true
+  on:
+    branch: master
