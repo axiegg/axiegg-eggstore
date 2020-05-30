@@ -26,11 +26,13 @@ const AxieListView = ({
   axieCount,
 }) => (
   <div className={classnames(styles.image, styles.classOne)}>
-    <Image
-      src={getAxiePNG(tokenId)}
-      alt={`Axie #${tokenId}`}
-    />
-    <a href="/">{name}</a>
+    <a href={`/axie/${tokenId}`}>
+      <Image
+        src={getAxiePNG(tokenId)}
+        alt={`Axie #${tokenId}`}
+      />
+    </a>
+    <a href={`/axie/${tokenId}`}>{name}</a>
   </div>
 );
 
@@ -48,24 +50,47 @@ const Bundle = ({
     sellOrders,
     description,
   },
-}) => (
-  <div>
-    <div className={styles.listItem}>
-      <div className={styles.teamWrapper}>
-        {assets.map((asset, i) => <BundleAsset key={i} asset={asset} className="classOne" />)}
-        <div className={styles.info}>
-          <div className={styles.title}>{name}</div>
-          <div className={styles.description}>
-            {description}
+}) => {
+  const [order, setOrder] = useState(null);
+
+  useEffect(() => {
+    if (sellOrders.length > 0) {
+      const sortedSellOrders = sellOrders.sort((a, b) => BNToETH(a.basePrice) > BNToETH(b.basePrice));
+      setOrder(sortedSellOrders[0]);
+    }
+  }, []);
+
+  return (
+    <div>
+      <div className={styles.listItem}>
+        <div className={styles.teamWrapper}>
+          {assets.map((asset, i) => <BundleAsset key={i} asset={asset} className="classOne" />)}
+          <div className={styles.info}>
+            <div className={styles.title}>{name}</div>
+            <div className={styles.description}>
+              {description}
+            </div>
           </div>
-        </div>
-        <div className={styles.price}>
-          <div className={styles.ether}>Ξ 0.014</div>
-          <div className={styles.dollar}>$2.39</div>
+          <div className={styles.price}>
+              {order !== null
+                  ? (
+                    <Button className={styles.button} onClick={() => buyOrder(order)}>
+                      <h4>Ξ 
+                        <span>{ERC20Mappings[order.paymentToken].convertOnly
+                          ? BNToNumber(order.basePrice)
+                          : BNToETH(order.basePrice)}
+                        </span>
+                      </h4>
+                    </Button>
+                  )
+                  : <p>Bundle has no fixed price.</p>
+                }
+          </div>
         </div>
       </div>
     </div>
-  </div>
-);
+  );
+
+}
 
 export default Bundle;
