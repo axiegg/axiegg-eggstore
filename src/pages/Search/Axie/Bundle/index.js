@@ -27,79 +27,106 @@ const Bundle = ({
     name,
     imageUrl,
     traits,
+    sellOrders
   },
-}) => (
-  <div className={styles.listItem}>
-    <div className={styles.axieWrapper}>
+}) => {
+  const [order, setOrder] = useState(null);
 
-      <div className={classnames(styles.image, styles.classOne)}>
-        <Image
-          src={getAxiePNG(tokenId)}
-          alt="[image]"
-        />
-        <a href="/">{name}</a>
-      </div>
+  useEffect(() => {
+    if (sellOrders.length > 0) {
+      const sortedSellOrders = sellOrders.sort((a, b) => BNToETH(a.basePrice) > BNToETH(b.basePrice));
+      setOrder(sortedSellOrders[0]);
+    }
+  }, []);
 
-      <div className={classnames(styles.axieInfo, styles.classTwo)}>
-        <div className="number">#44324342</div>
-        <div className="number">RP #44342</div>
-        <div className="number">Breed count</div>
-      </div>
+  return (
+    <div className={styles.listItem}>
+      <div className={styles.axieWrapper}>
 
-      <div className={styles.stats}>
-        <div className={styles.statsItem}>
-          <div className={styles.statsWrapper}>
-            <div className={styles.circle}>
-              <SvgImage />
+        <div className={classnames(styles.image, styles.classOne)}>
+          <a href={`/axie/${tokenId}`}>
+            <Image
+              src={getAxiePNG(tokenId)}
+              alt="[image]"
+            />
+          </a>
+          <a href={`/axie/${tokenId}`}>{name}</a>
+        </div>
+
+        <div className={classnames(styles.axieInfo, styles.classTwo)}>
+          <div className="number">#44324342</div>
+          <div className="number">RP #44342</div>
+          <div className="number">Breed count</div>
+        </div>
+
+        <div className={styles.stats}>
+          <div className={styles.statsItem}>
+            <div className={styles.statsWrapper}>
+              <div className={styles.circle}>
+                <SvgImage />
+              </div>
+              <p>Clear</p>
             </div>
-            <p>Clear</p>
+            <div className={styles.statsWrapper}>
+              <div className={styles.circle}>
+                <SvgImage />
+              </div>
+              <p>Inkling</p>
+            </div>
           </div>
-          <div className={styles.statsWrapper}>
-            <div className={styles.circle}>
-              <SvgImage />
+
+          <div className={styles.statsItem}>
+            <div className={styles.statsWrapper}>
+              <div className={styles.circle}>
+                <SvgImage />
+              </div>
+              <p>Anemone</p>
             </div>
-            <p>Inkling</p>
+            <div className={styles.statsWrapper}>
+              <div className={styles.circle}>
+                <SvgImage />
+              </div>
+              <p>Dango</p>
+            </div>
+          </div>
+
+          <div className={styles.statsItem}>
+            <div className={styles.statsWrapper}>
+              <div className={styles.circle}>
+                <SvgImage />
+              </div>
+              <p>Little_Branch</p>
+            </div>
+            <div className={styles.statsWrapper}>
+              <div className={styles.circle}>
+                <SvgImage />
+              </div>
+              <p>Tiny_Dino</p>
+            </div>
           </div>
         </div>
 
-        <div className={styles.statsItem}>
-          <div className={styles.statsWrapper}>
-            <div className={styles.circle}>
-              <SvgImage />
-            </div>
-            <p>Anemone</p>
-          </div>
-          <div className={styles.statsWrapper}>
-            <div className={styles.circle}>
-              <SvgImage />
-            </div>
-            <p>Dango</p>
-          </div>
+        <div className={classnames(styles.axiePrice, styles.classThree)}>
+          <div className="ether">Ξ 0.014</div>
+          <div className="dollar">$2.39</div>
+          {order !== null
+            ? (
+              <Button className={styles.button} onClick={() => buyOrder(order)}>
+                <h4>Ξ 
+                  <span>{ERC20Mappings[order.paymentToken].convertOnly
+                    ? BNToNumber(order.basePrice)
+                    : BNToETH(order.basePrice)}
+                  </span>
+                </h4>
+              </Button>
+            )
+            : <p>Bundle has no fixed price.</p>
+          }
         </div>
 
-        <div className={styles.statsItem}>
-          <div className={styles.statsWrapper}>
-            <div className={styles.circle}>
-              <SvgImage />
-            </div>
-            <p>Little_Branch</p>
-          </div>
-          <div className={styles.statsWrapper}>
-            <div className={styles.circle}>
-              <SvgImage />
-            </div>
-            <p>Tiny_Dino</p>
-          </div>
-        </div>
       </div>
-
-      <div className={classnames(styles.axiePrice, styles.classThree)}>
-        <div className="ether">Ξ 0.014</div>
-        <div className="dollar">$2.39</div>
-      </div>
-
     </div>
-  </div>
-);
+  );
+}
 
 export default Bundle;

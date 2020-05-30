@@ -8,7 +8,7 @@ import { FullHeight, Container } from 'components/Layout';
 import { Image } from 'components/Image';
 import Loader from 'components/Loader';
 
-import { AXIE_TOKEN_ADDRESS, EGGS_WALLET, ERC20Mappings } from 'shared/constants';
+import { AXIE_TOKEN_ADDRESSES, EGGS_WALLET, ERC20Mappings } from 'shared/constants';
 
 import { buyOrder } from 'services/Opensea';
 import { BNToNumber, BNToETH } from 'services/Web3Service';
@@ -40,7 +40,7 @@ const Teams = ({ opensea }) => {
     const getOrders = async () => {
       const { bundles } = await opensea.api.getBundles({
         owner: EGGS_WALLET,
-        asset_contract_address: AXIE_TOKEN_ADDRESS,
+        asset_contract_addresses: AXIE_TOKEN_ADDRESSES,
         on_sale: true,
       });
 
