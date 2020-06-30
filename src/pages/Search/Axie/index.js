@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 
 import styles from './index.module.sass';
+import classnames from 'classnames'
 
 import { FullHeight, Container } from 'components/Layout';
 import Loader from 'components/Loader';
@@ -52,7 +53,15 @@ const SearchAxies = ({
     <FullHeight className={styles.fullHeight}>
       <Container className={styles.container}>
         <h1 className={styles.title}>Axie Search Results</h1>
-        <h3><a href={`/search/axies/${parseInt(pageId, 10) - 1}`}>Prev page</a> Page {pageId} <a href={`/search/axies/${parseInt(pageId, 10) + 1}`}>Next page</a></h3>
+        <h3>
+          <a href={`/search/axies/${parseInt(pageId, 10) - 1}`}>
+            <img src="/assets/white-arrow.png" className={classnames(styles.icon, styles.left)} />
+          </a>
+           Page {pageId} 
+          <a href={`/search/axies/${parseInt(pageId, 10) + 1}`}>
+            <img src="/assets/white-arrow.png" className={styles.icon} />
+          </a>
+        </h3>
         <div className="axieList">
           {axies !== null
             ? axies.length > 0
@@ -63,7 +72,15 @@ const SearchAxies = ({
             : <Loader />
           }
         </div>
-        <h3><a href={`/search/axies/${parseInt(pageId, 10) - 1}`}>Prev page</a> Page {pageId} <a href={`/search/axies/${parseInt(pageId, 10) + 1}`}>Next page</a></h3>
+        <h3>
+          <a href={`/search/axies/${parseInt(pageId, 10) - 1}`}>
+            <img src="/assets/white-arrow.png" className={classnames(styles.icon, styles.left)} />
+          </a>
+           Page {pageId} 
+          <a href={`/search/axies/${parseInt(pageId, 10) + 1}`}>
+            <img src="/assets/white-arrow.png" className={styles.icon} />
+          </a>
+        </h3>
       </Container>
     </FullHeight>
   );
