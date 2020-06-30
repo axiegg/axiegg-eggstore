@@ -62,6 +62,53 @@ const SearchAxies = ({
             <img src="/assets/white-arrow.png" className={styles.icon} />
           </a>
         </h3>
+
+        <div className={styles.filters}>
+          <div className={styles.classWrapper}>
+            <h4>Class</h4>
+            <div className={styles.classes}>
+              <div className={styles.leftClass}>
+                <input type="checkbox" /> Beast <br />
+                <input type="checkbox" /> Plant <br />
+                <input type="checkbox" /> Bug <br />
+                <input type="checkbox" /> Mech <br />
+                <input type="checkbox" /> Dusk <br />
+              </div>
+              <div className={styles.rightClass}>
+                <input type="checkbox" /> Aquatic <br />
+                <input type="checkbox" /> Bird <br />
+                <input type="checkbox" /> Reptile <br />
+                <input type="checkbox" /> Dawn <br />
+              </div>
+            </div>
+          </div>
+          <div className={styles.partWrapper}>
+            <h4>Parts</h4>
+            <div className="parts">
+              <input type="text" placeholder="Search parts and abilities" />
+            </div>
+          </div>
+          <div className={styles.partWrapper}>
+            <div className="parts">
+              <h4>Type</h4>
+              <select>
+                <option>For sale</option>
+                <option>Not for sale</option>
+              </select>
+              <br />
+              
+              <h4>Order by</h4>
+              <select>
+                <option>Last sale</option>
+                <option>Token Id</option>
+                <option>Listing date</option>
+                <option>Top bid</option>
+                <option>Sale Price</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
         <div className="axieList">
           {axies !== null
             ? axies.length > 0
