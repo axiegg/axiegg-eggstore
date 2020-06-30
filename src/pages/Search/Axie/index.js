@@ -27,9 +27,7 @@ const SearchAxies = ({
 
   useEffect(() => {
     const getOrders = async () => {
-      console.log('Opensea API: ', opensea.api);
       let _axies = []
-      console.log(opensea.api);
 
       try {
         _axies = await opensea.api.getAssets({
@@ -41,6 +39,7 @@ const SearchAxies = ({
         console.log('Failed: ', err);
       }
 
+      console.log(_axies)
       setAxies(_axies.assets);
     };
 
@@ -48,8 +47,6 @@ const SearchAxies = ({
       getOrders();
     }
   }, [opensea]);
-
-  console.log('Axies: ', axies);
 
   return (
     <FullHeight className={styles.fullHeight}>
