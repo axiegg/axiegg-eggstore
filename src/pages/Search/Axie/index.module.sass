@@ -1,5 +1,36 @@
 @import 'assets/styles/functions.module.sass'
 
+.leftClass
+  text-align: left !important
+.rightClass
+  text-align: left !important
+
+
+.filters
+  display: grid
+  grid-template-columns: 5fr 5fr 5fr
+  grid-template-areas: "partsWraspper classWrapper"
+  background: #433a3c
+
+.partWrapper
+  padding: 20px
+
+.classWrapper
+  padding: 20px
+
+.classes
+  width: 300px
+  display: grid
+  grid-template-columns: 5fr 5fr
+  grid-template-areas: "leftClass rightClass"
+
+.icon
+  width: pxToRem(20)
+  margin: 0 pxToRem(10)
+
+.left
+  transform: rotate(180deg)
+
 .fullHeight
   text-align: center
   position: relative

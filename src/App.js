@@ -7,6 +7,7 @@ import Routes from 'Routes';
 
 class App extends Component {
   componentDidMount() {
+    // wait for button click
     this.setup();
   }
 
