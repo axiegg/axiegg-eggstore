@@ -1,17 +1,25 @@
-# Repo Starter
-
-1. React App Rewired -  https://github.com/timarney/react-app-rewired
+# Axiegg store front
 2. Redux as store management with duck methodology
 3. Styling made with CSS/SASS modules `module.sass` or with standard CSS/SASS `.sass`.
-4. Hot reload
-5. Eslint
 
 ##### Eslint made with Airbnb config and some custom tweaks
-
 It can be disabled in `./config-overrides.js` by commenting out lines or tweaking it in `./eslintrc`:
 
+#### Install required node modules
 ```sh
-  const rewireEslint = require('react-app-rewire-eslint');
-  ...
-  config = rewireEslint(config, env, overrideEslintOptions);
+  yarn install
 ```
+
+#### Run the project locally with react-rewired
+```sh
+  yarn start
+```
+
+#### Building the project. This will create a build folder with the static front end files
+```sh
+  yarn build
+```
+
+#### The build and deploy is managed by TravisCI and settings are available in the
+`.travis,yml` file.
+
