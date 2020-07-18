@@ -127,66 +127,46 @@ const Traits = ({traits}) => {
 
 const Bundle = ({
   bundle: {
-    tokenId,
+    id,
     name,
-    imageUrl,
-    traits,
-    sellOrders
+    image,
+    breedCount,
+    stats
   },
 }) => {
-  const [order, setOrder] = useState(null);
-
-  useEffect(() => {
-    if (sellOrders.length > 0) {
-      const sortedSellOrders = sellOrders.sort((a, b) => BNToETH(a.basePrice) > BNToETH(b.basePrice));
-      setOrder(sortedSellOrders[0]);
-    }
-  }, []);
 
   return (
-    <div className={styles.listItem}>
+    <a href={`/axie/${id}`} className={styles.listItem}>
       <div className={styles.axieWrapper}>
 
         <div className={classnames(styles.image, styles.classOne)}>
-          <a href={`/axie/${tokenId}`}>
-            <Image
-              src={getAxiePNG(tokenId)}
-              alt="[image]"
-            />
-          </a>
-          <a href={`/axie/${tokenId}`}>{name}</a>
+          <Image
+            src={getAxiePNG(id)}
+            alt=""
+          />
         </div>
 
         <div className={classnames(styles.axieInfo, styles.classTwo)}>
-          <div className="number">#44324342</div>
-          <div className="number">RP #44342</div>
-          <div className="number">Breed count</div>
+          <div className={styles.id}>#{id}</div>
+          <div className="number">{name}</div>
+          <div className="number">Breed count: {breedCount}</div>
         </div>
 
         <div className={styles.stats}>
-          <Traits traits={traits} />
+          <div className={styles.statsItem}>❤️Health {stats.hp}</div>
+          <div className={styles.statsItem}>⚡Speed {stats.speed}</div>
+          <div className={styles.statsItem}>⭐Skill<br/> {stats.skill}</div>
+          <div className={styles.statsItem}>🔥Morale {stats.morale}</div>
+
         </div>
 
         <div className={classnames(styles.axiePrice, styles.classThree)}>
           <div className="ether">Ξ 0.014</div>
           <div className="dollar">$2.39</div>
-          {order !== null
-            ? (
-              <Button className={styles.button} onClick={() => buyOrder(order)}>
-                <h4>Ξ 
-                  <span>{ERC20Mappings[order.paymentToken].convertOnly
-                    ? BNToNumber(order.basePrice)
-                    : BNToETH(order.basePrice)}
-                  </span>
-                </h4>
-              </Button>
-            )
-            : <p>Bundle has no fixed price.</p>
-          }
         </div>
 
       </div>
-    </div>
+    </a>
   );
 }
 
