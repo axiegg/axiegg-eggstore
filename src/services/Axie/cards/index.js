@@ -42,7 +42,5 @@ export const requestCardsData = async () => {
     };
   });
 
-  //store.dispatch(setCardsData(parsedData));
-  console.log(parsedData);
-  store.dispatch(setCardsData(null));
+  store.dispatch(setCardsData(parsedData));
 };

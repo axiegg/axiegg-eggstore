@@ -18,6 +18,7 @@ import Bundle from './Bundle';
 import axios from 'axios';
 import _ from 'lodash';
 
+
 class Pager extends React.Component {
   constructor(props) {
     super(props);
@@ -54,6 +55,7 @@ class SearchAxies extends React.Component {
       parts: [],
       mystic: false,
       pureness: 1,
+      breedable: false,
       pager: {
         totalAxies: 0,
         offset: 0,
@@ -79,6 +81,12 @@ class SearchAxies extends React.Component {
       url += `&part=${this.state.parts[i]}`;
     }
 
+    url += `&breedable=${this.state.breedable}`;
+
+    // doesn't seem to work
+    //url += `&mystic=${this.state.mystic}`; 
+
+    console.log('URL', url);
     return url;
   }
 
@@ -111,6 +119,7 @@ class SearchAxies extends React.Component {
       parts: [],
       mystic: false,
       pureness: 1,
+      breedable: false,
     };
 
     if (localStorage) {
@@ -123,15 +132,21 @@ class SearchAxies extends React.Component {
           var classId = filters.classes[i];
           document.getElementById(classId).checked = true;
         }
+
+        document.getElementById('breedable').checked = filters.breedable;
+        document.getElementById('mystic').checked = filters.mystic;
+
       }
+
     } 
 
-    const payload = {
+    var payload = {
       //axies: data[0].axies,
       classes: filters.classes,
       parts: filters.parts,
       mystic: filters.mystic,
       pureness: filters.pureness,
+      breedable: filters.breedable,
       pager: {
         totalAxies: 0,
         offset: ((parseInt(this.props.match.params.pageId,10) - 1) * 12),
@@ -139,7 +154,25 @@ class SearchAxies extends React.Component {
       },
     };
 
-    this.setState(payload);
+    console.log('BREEDABLE: ', payload);
+
+
+    this.setState({
+      //axies: data[0].axies,
+      classes: filters.classes,
+      parts: filters.parts,
+      mystic: filters.mystic,
+      pureness: filters.pureness,
+      breedable: filters.breedable,
+      pager: {
+        totalAxies: 0,
+        offset: ((parseInt(this.props.match.params.pageId,10) - 1) * 12),
+        pageId: parseInt(this.props.match.params.pageId, 10),
+      },
+    });
+
+
+    console.log('COMPONENT DID MOUNT: ', filters.breedable, this.state);
   }
 
   async reloadAxies() {
@@ -158,6 +191,8 @@ class SearchAxies extends React.Component {
     if (!_.isEqual(prevState, this.state)) {
       this.reloadAxies();
     }
+    
+    console.log('COMPONENT DID update: ', this.state);
   }
 
   toggleClass = (e) => {
@@ -181,6 +216,7 @@ class SearchAxies extends React.Component {
       parts: [],
       mystic: false,
       pureness: 1,
+      breedable: false,
     };
 
     if (localStorage) {
@@ -199,6 +235,132 @@ class SearchAxies extends React.Component {
     this.reloadAxies();
   }
 
+  handleParts = (e) => {
+    e.preventDefault();
+
+    var parts = this.state.parts;
+    
+    // show spinner
+    this.setState({
+      axies: null,
+    });
+
+    if (!e.target.delete.checked)  {
+      console.log('add');
+      parts.push(e.target.part.value);
+
+    } else {
+      console.log('delete');
+      const index = parts.indexOf(e.target.part.value);
+      if (index >= 0)
+        parts.splice(index, 1);
+    }
+
+    let filters = {
+      classes: [],
+      parts: [],
+      mystic: false,
+      pureness: 1,
+      breedable: false,
+    };
+
+    if (localStorage) {
+      console.log('local storage supported');
+      if (localStorage.getItem('filters') !== null) {
+        filters = JSON.parse(localStorage.getItem('filters'));
+      }
+      filters.parts= parts;
+      localStorage.setItem('filters', JSON.stringify(filters));
+    } 
+
+    this.setState({
+      parts: parts
+    });
+
+    this.reloadAxies();
+
+
+    console.log(this.state);
+  }
+  
+  handleOrder = () => {
+
+  }
+
+  handleBreedable = (e) => {
+
+    const val = e.target.checked;
+
+    // show spinner
+    this.setState({
+      axies: null,
+    });
+
+    let filters = {
+      classes: [],
+      parts: [],
+      mystic: false,
+      pureness: 1,
+      breedable: false,
+    };
+
+    if (localStorage) {
+      console.log('local storage supported');
+      if (localStorage.getItem('filters') !== null) {
+        filters = JSON.parse(localStorage.getItem('filters'));
+      }
+      filters.breedable = val;
+      localStorage.setItem('filters', JSON.stringify(filters));
+    } 
+
+    this.setState({
+      breedable: filters.breedable
+    });
+
+    this.reloadAxies();
+
+    console.log('BREEDABLE: ',this.state.breedable, filters.breedable,  this.state);
+  }
+
+  handleStage = () => {
+
+  }
+
+  handleMystic = (e) => {
+
+    const val = e.target.checked;
+
+    // show spinner
+    this.setState({
+      axies: null,
+    });
+
+    let filters = {
+      classes: [],
+      parts: [],
+      mystic: false,
+      pureness: 1,
+      breedable: false,
+    };
+
+    if (localStorage) {
+      console.log('local storage supported');
+      if (localStorage.getItem('filters') !== null) {
+        filters = JSON.parse(localStorage.getItem('filters'));
+      }
+      filters.mystic = val;
+      localStorage.setItem('filters', JSON.stringify(filters));
+    } 
+
+    this.setState({
+      mystic: filters.mystic
+    });
+
+    this.reloadAxies();
+
+
+  }
+
   render() {
     let axiesElement;
     if (this.state.axies !== null && this.state.axies.length > 0) {
@@ -208,6 +370,8 @@ class SearchAxies extends React.Component {
     } else if (this.state.axies.length > 0) {
       axiesElement = <p>Axies temporarily out of stock! Contact us on Discord to purchase Axies.</p>;
     }
+
+    const { editFields } = this.state;
 
     return (
       <FullHeight className={styles.fullHeight}>
@@ -235,26 +399,36 @@ class SearchAxies extends React.Component {
             </div>
             <div className={styles.partWrapper}>
               <h4>Parts</h4>
-              <div className="parts">
-                <input type="text" placeholder="Search parts and abilities" />
-              </div>
+              <form onSubmit={this.handleParts} className={styles.parts}>
+                <input type="checkbox" name="delete" /> delete mode
+                <input type="text" name="part" placeholder="Enter part name" />
+                <input type="submit" name="submit" value="submit"/>
+                <br/>
+                Current parts: {this.state.parts}
+                <br/>
+                <a style={{ textDecoration: 'underline' }} href="http://axie.wiki/index.php?title=Parts">Part List</a>
+              </form>
             </div>
             <div className={styles.partWrapper}>
               <div className="parts">
-                <h4>Type</h4>
-                <select>
-                  <option>For sale</option>
-                  <option>Not for sale</option>
+                <input type="checkbox" id="breedable" name="breedable" onChange={this.handleBreedable} /> Breedable
+
+                <h4>Stage</h4>
+                <select onChange={this.handleStage} id="stage">
+                  <option value="1">Egg</option>
+                  <option value="2">Larva</option>
+                  <option value="3">Petite</option>
+                  <option value="4">Adult</option>
                 </select>
+
                 <br />
                 
                 <h4>Order by</h4>
-                <select>
-                  <option>Last sale</option>
+                <select onChange={this.handleOrder} id="orderBy" name="orderBy">
                   <option>Token Id</option>
-                  <option>Listing date</option>
-                  <option>Top bid</option>
-                  <option>Sale Price</option>
+                  <option>Lowest Price</option>
+                  <option>Highest Price</option>
+                  <option>Latest Auction</option>
                 </select>
               </div>
             </div>
