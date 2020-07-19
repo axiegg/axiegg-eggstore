@@ -32,6 +32,7 @@ const Bundle = ({
           <Image
             src={getAxiePNG(id)}
             alt=""
+            className={styles.axieSearchImg}
           />
         </div>
 
