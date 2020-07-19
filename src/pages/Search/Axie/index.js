@@ -16,11 +16,11 @@ import { API_ENDPOINT, AXIE_TOKEN_ADDRESS, AXIE_TOKEN_ADDRESSES, EGGS_WALLET, ER
 import Bundle from './Bundle';
 
 import axios from 'axios';
+import _ from 'lodash';
 
 class Pager extends React.Component {
   constructor(props) {
     super(props);
-
   }
 
   render() {
@@ -102,42 +102,71 @@ class SearchAxies extends React.Component {
   }
 
   async componentDidMount() {
-    const data  = await this.getAxies(AXIE_TOKEN_ADDRESSES[1]);
+    //const data  = await this.getAxies(AXIE_TOKEN_ADDRESSES[1]);
     const pageId = parseInt(this.props.match.params.pageId,10);
-    const prev = (pageId < 2) ? 1 : pageId - 1;
-    const next = (((pageId*12)+2) > (data[0].totalAxies - 12)) ? pageId : pageId + 1;
-    console.log(data);
-    this.setState({
-      axies: data[0].axies,
+    //console.log(data);
+
+    let filters = {
+      classes: [],
+      parts: [],
+      mystic: false,
+      pureness: 1,
+    };
+
+    if (localStorage) {
+      console.log('local storage supported');
+      if (localStorage.getItem('filters') !== null) {
+        filters = JSON.parse(localStorage.getItem('filters'));
+
+        // update the filters component
+        for(var i =0; i < filters.classes.length; i++) {
+          var classId = filters.classes[i];
+          document.getElementById(classId).checked = true;
+        }
+      }
+    } 
+
+    const payload = {
+      //axies: data[0].axies,
+      classes: filters.classes,
+      parts: filters.parts,
+      mystic: filters.mystic,
+      pureness: filters.pureness,
       pager: {
-        totalAxies: data[0].totalAxies,
+        totalAxies: 0,
         offset: ((parseInt(this.props.match.params.pageId,10) - 1) * 12),
-        prev: prev,
-        next: next,
         pageId: parseInt(this.props.match.params.pageId, 10),
       },
-    });
+    };
 
-    console.log(this.state);
+    this.setState(payload);
+  }
+
+  async reloadAxies() {
+    const data = await this.getAxies(AXIE_TOKEN_ADDRESSES[1]);
+    var pager = this.state.pager;
+    pager.totalAxies = data[0].totalAxies;
+    pager.prev = (pager.pageId < 2) ? 1 : pager.pageId - 1;
+    pager.next = (((pager.pageId*12)+2) > (pager.totalAxies - 12)) ? pager.pageId : pager.pageId + 1;
+    this.setState({
+      axies: data[0].axies,
+      pager: pager,
+    });
   }
 
   async componentDidUpdate(prevProps, prevState) {
-    console.log('PREV_STATE, CUR_STATE: ', prevState, this.state);
-    if (prevState !== this.state) {
-      const data = await this.getAxies(AXIE_TOKEN_ADDRESSES[1]);
-      var pager = this.state.pager;
-      pager.totalAxies = data[0].totalAxies;
-      this.setState({
-        axies: data[0].axies,
-        pager: pager,
-      });
-      console.log(this.state);
+    if (!_.isEqual(prevState, this.state)) {
+      this.reloadAxies();
     }
   }
 
   toggleClass = (e) => {
-
     var classes = this.state.classes;
+
+    // show spinner
+    this.setState({
+      axies: null,
+    });
 
     if (e.target.checked) {
       classes.push(e.target.value);
@@ -147,36 +176,60 @@ class SearchAxies extends React.Component {
         classes.splice(index, 1);
     }
     
+    let filters = {
+      classes: [],
+      parts: [],
+      mystic: false,
+      pureness: 1,
+    };
+
+    if (localStorage) {
+      console.log('local storage supported');
+      if (localStorage.getItem('filters') !== null) {
+        filters = JSON.parse(localStorage.getItem('filters'));
+      }
+      filters.classes = classes;
+      localStorage.setItem('filters', JSON.stringify(filters));
+    } 
+
     this.setState({
       classes: classes
     });
 
-    console.log(this.state);
+    this.reloadAxies();
   }
 
   render() {
+    let axiesElement;
+    if (this.state.axies !== null && this.state.axies.length > 0) {
+      axiesElement = this.state.axies.map((axie, i) => <Bundle key={i} bundle={axie} />);
+    } else if (this.state.axies === null) {
+      axiesElement = <Loader />;
+    } else if (this.state.axies.length > 0) {
+      axiesElement = <p>Axies temporarily out of stock! Contact us on Discord to purchase Axies.</p>;
+    }
+
     return (
       <FullHeight className={styles.fullHeight}>
         <Container className={styles.container}>
           <h1 className={styles.title}>Axie Search Results</h1>
-
 
           <div className={styles.filters}>
             <div className={styles.classWrapper}>
               <h4>Class</h4>
               <div className={styles.classes}>
                 <div className={styles.leftClass}>
-                  <input type="checkbox" onClick={this.toggleClass} value="beast" /> Beast <br />
-                  <input type="checkbox" onClick={this.toggleClass} value="plant" /> Plant <br />
-                  <input type="checkbox" onClick={this.toggleClass} value="bug" /> Bug <br />
-                  <input type="checkbox" onClick={this.toggleClass} value="mech" /> Mech <br />
-                  <input type="checkbox" onClick={this.toggleClass} value="dusk" /> Dusk <br />
+                  <input type="checkbox" onClick={this.toggleClass} id="beast" value="beast" /> Beast <br />
+                  <input type="checkbox" onClick={this.toggleClass} id="plant" value="plant" /> Plant <br />
+                  <input type="checkbox" onClick={this.toggleClass} id="bug" value="bug" /> Bug <br />
+                  <input type="checkbox" onClick={this.toggleClass} id="mech" value="mech" /> Mech <br />
+                  <input type="checkbox" onClick={this.toggleClass} id="dusk" value="dusk" /> Dusk <br />
                 </div>
                 <div className={styles.rightClass}>
-                  <input type="checkbox" onClick={this.toggleClass} value="aquatic" /> Aquatic <br />
-                  <input type="checkbox" onClick={this.toggleClass} value="bird" /> Bird <br />
-                  <input type="checkbox" onClick={this.toggleClass} value="reptile" /> Reptile <br />
-                  <input type="checkbox" onClick={this.toggleClass} value="dawn" /> Dawn <br />
+                  <input type="checkbox" onClick={this.toggleClass} id="aquatic" value="aquatic" /> Aquatic <br />
+                  <input type="checkbox" onClick={this.toggleClass} id="bird" value="bird" /> Bird <br />
+                  <input type="checkbox" onClick={this.toggleClass} id="reptile" value="reptile" /> Reptile <br />
+                  <input type="checkbox" onClick={this.toggleClass} id="dawn" value="dawn" /> Dawn <br />
                 </div>
               </div>
             </div>
@@ -211,14 +264,7 @@ class SearchAxies extends React.Component {
           <Pager pager={this.state.pager} />
 
           <div className="axieList">
-            {this.state.axies !== null
-              ? this.state.axies.length > 0
-                ? (
-                  this.state.axies.map((axie, i) => <Bundle key={i} bundle={axie} />)
-                )
-                : <p>Axies temporarily out of stock! Contact us on Discord to purchase Axies.</p>
-              : <Loader />
-            }
+            {axiesElement}
           </div>
 
           <Pager pager={this.state.pager} />

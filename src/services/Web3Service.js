@@ -63,19 +63,22 @@ export const initWeb3 = async () => {
 
   // new privacy mode -> request account access if needed
   if (window.ethereum) {
+    console.log("CONNECT: WINDOW.ETHEREUM");
     // eslint-disable-next-line
-    web3 = new Web3(ethereum);
+    web3 = new Web3(window.ethereum);
     try {
       // eslint-disable-next-line
-      await ethereum.enable();
+      await window.ethereum.enable();
     } catch (error) {
       // if user denies access
       console.error(error);
     }
   } else if (web3) {
+    console.log("CONNECT: OLD WAY");
     // old way of asking for web3
     web3 = new Web3(web3.currentProvider);
   } else {
+    console.log("CONNECT: INFURA");
     // connect to custom provider, like Infura if there is no wallet detected
     web3 = new Web3(new Web3.providers.HttpProvider('https://mainnet.infura.io/Fi6gFcfwLWXX6YUOnke8'));
   }
