@@ -17,6 +17,33 @@ import Bundle from './Bundle';
 
 import axios from 'axios';
 
+class Pager extends React.Component {
+  constructor(props) {
+    super(props);
+
+  }
+
+  render() {
+    return (
+      <div>
+      {this.props.pager.pageId !== 0 ? 
+        (<h3>
+          <a href={`/search/axies/${this.props.pager.prev}`}>
+            <img src="/assets/white-arrow.png" className={classnames(styles.icon, styles.left)} />
+          </a>
+           Page {this.props.pager.pageId}
+          <a href={`/search/axies/${this.props.pager.next}`}>
+            <img src="/assets/white-arrow.png" className={styles.icon} />
+          </a>
+        </h3>) 
+        : 
+        (<p>Loading...</p>)
+      }
+      </div>
+    );
+  }
+}
+
 class SearchAxies extends React.Component {
   constructor(props) {
     super(props);
@@ -27,8 +54,13 @@ class SearchAxies extends React.Component {
       parts: [],
       mystic: false,
       pureness: 1,
-      totalAxies: 0,
-      offset: 0,
+      pager: {
+        totalAxies: 0,
+        offset: 0,
+        prev: 2,
+        next: 0,
+        pageId: 0,
+      },
     }
 
   }
@@ -37,7 +69,7 @@ class SearchAxies extends React.Component {
     var url = `${API_ENDPOINT}/addresses/${address}/axies?`;
     
     // pages = totalAxies / 12;
-    url += `offset=${this.state.offset}`;
+    url += `offset=${this.state.pager.offset}`;
 
     for (var i = 0; i < this.state.classes.length; i++) {
       url += `&class=${this.state.classes[i]}`;
@@ -71,23 +103,35 @@ class SearchAxies extends React.Component {
 
   async componentDidMount() {
     const data  = await this.getAxies(AXIE_TOKEN_ADDRESSES[1]);
+    const pageId = parseInt(this.props.match.params.pageId,10);
+    const prev = (pageId < 2) ? 1 : pageId - 1;
+    const next = (((pageId*12)+2) > (data[0].totalAxies - 12)) ? pageId : pageId + 1;
     console.log(data);
     this.setState({
       axies: data[0].axies,
-      totalAxies: data[0].totalAxies,
-      offset: parseInt(this.props.match.params.pageId) - 1,
+      pager: {
+        totalAxies: data[0].totalAxies,
+        offset: ((parseInt(this.props.match.params.pageId,10) - 1) * 12),
+        prev: prev,
+        next: next,
+        pageId: parseInt(this.props.match.params.pageId, 10),
+      },
     });
 
-    console.log('PAGE: ', this.state);
+    console.log(this.state);
   }
 
   async componentDidUpdate(prevProps, prevState) {
+    console.log('PREV_STATE, CUR_STATE: ', prevState, this.state);
     if (prevState !== this.state) {
       const data = await this.getAxies(AXIE_TOKEN_ADDRESSES[1]);
+      var pager = this.state.pager;
+      pager.totalAxies = data[0].totalAxies;
       this.setState({
         axies: data[0].axies,
-        totalAxies: data[0].totalAxies,
+        pager: pager,
       });
+      console.log(this.state);
     }
   }
 
@@ -115,6 +159,7 @@ class SearchAxies extends React.Component {
       <FullHeight className={styles.fullHeight}>
         <Container className={styles.container}>
           <h1 className={styles.title}>Axie Search Results</h1>
+
 
           <div className={styles.filters}>
             <div className={styles.classWrapper}>
@@ -162,6 +207,9 @@ class SearchAxies extends React.Component {
             </div>
           </div>
 
+
+          <Pager pager={this.state.pager} />
+
           <div className="axieList">
             {this.state.axies !== null
               ? this.state.axies.length > 0
@@ -172,6 +220,9 @@ class SearchAxies extends React.Component {
               : <Loader />
             }
           </div>
+
+          <Pager pager={this.state.pager} />
+               
         </Container>
       </FullHeight>
     );
