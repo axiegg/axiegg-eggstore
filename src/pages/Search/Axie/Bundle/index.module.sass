@@ -1,4 +1,5 @@
 @import 'assets/styles/functions.module.sass'
+@import 'assets/styles/variables.module.sass'
 
 body
   width: 70% 
@@ -9,17 +10,14 @@ body
   display: flex
   flex-direction: row
   
-
 .teamWrapper a,
 .axieWrapper a
   color: white
   text-decoration: none
 
-
 .axieWrapper a,
 .teamWrapper a:hover
   color: #ddd
-
 
 .axieWrapper
   margin: 0 auto
@@ -28,7 +26,6 @@ body
   flex-direction: row
   align-items: left
   
-
 .listItem
   width: auto
   overflow: auto
@@ -36,47 +33,47 @@ body
   color: white
   margin: 50px 0
   border-radius: 10px
+  display: block
+
+
+.listItem:hover
+  border: 1px solid #000
+  box-shadow: 2px 2px 5px #000
   
 
 .listItem h5
    padding: 0 5% 
 
-
-
 .info
   flex: 1
   padding: 20px 0
   text-align:center
-  
 
 .axieInfo
   padding: 20px 42px
-
+  text-align: left
 
 .classOne
   width: 100px
-
 
 .description
   padding: 20px 0
   flex: 1
   font-size: 12px
   
-
 .image
-  text-align: center
+  text-align: left
 
-
-img
- width: 100%
-
+.axieSearchImg
+ height: 150px
+ width: auto
+ margin-left: -50px
 
 .price
   grid-area: price
   text-align: center
   padding: 42px 0
   
-
 .axiePrice
   text-align: center
   padding: 25px 0
@@ -86,25 +83,23 @@ img
   flex-wrap: nowrap
   
 .statsItem
-  width: 50%
-  margin: 10px
+  width: 100px
+  margin: 50px 10px
   
 .statsWrapper
   display: flex
   flex-direction: row
-
-.statsItem p
-  padding: 10px
-  margin: 0
-  height: auto
-  font-size: 12px
-  
-.circle
-  width: 25px
-  height: 25px
 
 .singleAxie
   width: 100px
 
 .info > .title
   font-weight: bold
+
+.id
+  padding-top: 1px
+  padding-bottom: 1px
+  background-color: #0a0a02
+  border-color: transparent
+  border-radius: 5px
+  text-align: center
