@@ -41,12 +41,15 @@ const Bundle = ({
           <div className="number">Breed count: {breedCount}</div>
         </div>
 
+        <div>
+        {stats !== null ? (
         <div className={styles.stats}>
           <div className={styles.statsItem}>❤️Health {stats.hp}</div>
           <div className={styles.statsItem}>⚡Speed {stats.speed}</div>
           <div className={styles.statsItem}>⭐Skill<br/> {stats.skill}</div>
           <div className={styles.statsItem}>🔥Morale {stats.morale}</div>
-
+        </div>
+        ) : (<p>No stats</p>)}
         </div>
 
         <div className={classnames(styles.axiePrice, styles.classThree)}>

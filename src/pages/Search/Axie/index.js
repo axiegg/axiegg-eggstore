@@ -18,6 +18,15 @@ import Bundle from './Bundle';
 import axios from 'axios';
 import _ from 'lodash';
 
+let filters = {
+  classes: [],
+  parts: [],
+  mystic: false,
+  pureness: 'any',
+  breedable: false,
+  stage: 'any',
+  orderBy: 'hightest_id',
+};
 
 class Pager extends React.Component {
   constructor(props) {
@@ -49,20 +58,56 @@ class SearchAxies extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      axies: [],
-      classes: [],
-      parts: [],
-      mystic: false,
-      pureness: 1,
-      breedable: false,
-      pager: {
-        totalAxies: 0,
-        offset: 0,
-        prev: 2,
-        next: 0,
-        pageId: 0,
-      },
+
+    if (localStorage) {
+      console.log('local storage supported');
+      if (localStorage.getItem('filters') !== null) {
+        filters = JSON.parse(localStorage.getItem('filters'));
+
+        // update the filters component
+        for(var i =0; i < filters.classes.length; i++) {
+          var classId = filters.classes[i];
+//          document.getElementById(classId).checked = true;
+        }
+//        document.getElementById('breedable').checked = filters.breedable;
+      }
+
+      this.state = {
+        //axies: data[0].axies,
+        classes: filters.classes,
+        parts: filters.parts,
+        mystic: filters.mystic,
+        pureness: filters.pureness,
+        breedable: filters.breedable,
+        stage: filters.stage,
+        orderBy: filters.orderBy,
+        pager: {
+          totalAxies: 0, //data[0].totalAxies,
+          offset: 0, //(pageId - 1) * 12,
+          pageId: 1, //pageId,
+          prev: 1, //prev,
+          next: 1, //next,
+        },
+      };
+
+    } else {
+      this.state = {
+        axies: [],
+        classes: [],
+        parts: [],
+        mystic: false,
+        pureness: 'any',
+        breedable: false,
+        stage: 'any',
+        orderBy: 'lowest_id',
+        pager: {
+          totalAxies: 0,
+          offset: 0,
+          prev: 2,
+          next: 0,
+          pageId: 0,
+        },
+      }
     }
 
   }
@@ -85,6 +130,14 @@ class SearchAxies extends React.Component {
 
     // doesn't seem to work
     //url += `&mystic=${this.state.mystic}`; 
+    
+    if (this.state.pureness !== 'any')
+      url += `&pureness=${this.state.pureness}`;
+
+    if (this.state.stage !== 'any')
+      url += `&stage=${this.state.stage}`;
+    
+    url += `&sorting=${this.state.orderBy}`;
 
     console.log('URL', url);
     return url;
@@ -110,69 +163,14 @@ class SearchAxies extends React.Component {
   }
 
   async componentDidMount() {
-    //const data  = await this.getAxies(AXIE_TOKEN_ADDRESSES[1]);
-    const pageId = parseInt(this.props.match.params.pageId,10);
-    //console.log(data);
+    for(var i = 0; i < this.state.classes.length; i++) {
+      var classId = filters.classes[i];
+      document.getElementById(classId).checked = true;
+    }
+    document.getElementById('breedable').checked = this.state.breedable;
 
-    let filters = {
-      classes: [],
-      parts: [],
-      mystic: false,
-      pureness: 1,
-      breedable: false,
-    };
-
-    if (localStorage) {
-      console.log('local storage supported');
-      if (localStorage.getItem('filters') !== null) {
-        filters = JSON.parse(localStorage.getItem('filters'));
-
-        // update the filters component
-        for(var i =0; i < filters.classes.length; i++) {
-          var classId = filters.classes[i];
-          document.getElementById(classId).checked = true;
-        }
-
-        document.getElementById('breedable').checked = filters.breedable;
-        document.getElementById('mystic').checked = filters.mystic;
-
-      }
-
-    } 
-
-    var payload = {
-      //axies: data[0].axies,
-      classes: filters.classes,
-      parts: filters.parts,
-      mystic: filters.mystic,
-      pureness: filters.pureness,
-      breedable: filters.breedable,
-      pager: {
-        totalAxies: 0,
-        offset: ((parseInt(this.props.match.params.pageId,10) - 1) * 12),
-        pageId: parseInt(this.props.match.params.pageId, 10),
-      },
-    };
-
-    console.log('BREEDABLE: ', payload);
-
-
-    this.setState({
-      //axies: data[0].axies,
-      classes: filters.classes,
-      parts: filters.parts,
-      mystic: filters.mystic,
-      pureness: filters.pureness,
-      breedable: filters.breedable,
-      pager: {
-        totalAxies: 0,
-        offset: ((parseInt(this.props.match.params.pageId,10) - 1) * 12),
-        pageId: parseInt(this.props.match.params.pageId, 10),
-      },
-    });
-
-
-    console.log('COMPONENT DID MOUNT: ', filters.breedable, this.state);
+    const payload = await this.reloadAxies();
+    this.setState(payload);
   }
 
   async reloadAxies() {
@@ -181,27 +179,21 @@ class SearchAxies extends React.Component {
     pager.totalAxies = data[0].totalAxies;
     pager.prev = (pager.pageId < 2) ? 1 : pager.pageId - 1;
     pager.next = (((pager.pageId*12)+2) > (pager.totalAxies - 12)) ? pager.pageId : pager.pageId + 1;
-    this.setState({
+    return {
       axies: data[0].axies,
       pager: pager,
-    });
+    };
   }
 
   async componentDidUpdate(prevProps, prevState) {
     if (!_.isEqual(prevState, this.state)) {
-      this.reloadAxies();
+      console.log('COMPONENT DID update: ', this.state);
+      //this.reloadAxies();
     }
-    
-    console.log('COMPONENT DID update: ', this.state);
   }
 
-  toggleClass = (e) => {
+  toggleClass = async (e) => {
     var classes = this.state.classes;
-
-    // show spinner
-    this.setState({
-      axies: null,
-    });
 
     if (e.target.checked) {
       classes.push(e.target.value);
@@ -211,14 +203,6 @@ class SearchAxies extends React.Component {
         classes.splice(index, 1);
     }
     
-    let filters = {
-      classes: [],
-      parts: [],
-      mystic: false,
-      pureness: 1,
-      breedable: false,
-    };
-
     if (localStorage) {
       console.log('local storage supported');
       if (localStorage.getItem('filters') !== null) {
@@ -228,22 +212,17 @@ class SearchAxies extends React.Component {
       localStorage.setItem('filters', JSON.stringify(filters));
     } 
 
-    this.setState({
-      classes: classes
-    });
+    var payload = await this.reloadAxies();
+    var finalPayload = { classes: classes, ...payload};
+    this.setState(finalPayload);
+    console.log('Toggle class: ', finalPayload);
 
-    this.reloadAxies();
   }
 
-  handleParts = (e) => {
+  handleParts = async (e) => {
     e.preventDefault();
 
     var parts = this.state.parts;
-    
-    // show spinner
-    this.setState({
-      axies: null,
-    });
 
     if (!e.target.delete.checked)  {
       console.log('add');
@@ -256,14 +235,6 @@ class SearchAxies extends React.Component {
         parts.splice(index, 1);
     }
 
-    let filters = {
-      classes: [],
-      parts: [],
-      mystic: false,
-      pureness: 1,
-      breedable: false,
-    };
-
     if (localStorage) {
       console.log('local storage supported');
       if (localStorage.getItem('filters') !== null) {
@@ -274,35 +245,37 @@ class SearchAxies extends React.Component {
     } 
 
     this.setState({
-      parts: parts
-    });
-
-    this.reloadAxies();
-
-
-    console.log(this.state);
-  }
-  
-  handleOrder = () => {
-
-  }
-
-  handleBreedable = (e) => {
-
-    const val = e.target.checked;
-
-    // show spinner
-    this.setState({
+      parts: parts,
       axies: null,
     });
 
-    let filters = {
-      classes: [],
-      parts: [],
-      mystic: false,
-      pureness: 1,
-      breedable: false,
-    };
+    this.reloadAxies();
+    var payload = await this.reloadAxies();
+    var finalPayload = { parts: parts, ...payload};
+    this.setState(finalPayload);
+    console.log('Parts: ', this.state);
+  }
+  
+  handleOrder = async (e) => {
+
+    if (localStorage) {
+      console.log('local storage supported');
+      if (localStorage.getItem('filters') !== null) {
+        filters = JSON.parse(localStorage.getItem('filters'));
+      }
+      filters.orderBy = e.target.value;
+      localStorage.setItem('filters', JSON.stringify(filters));
+    } 
+
+    var payload = await this.reloadAxies();
+    var finalPayload = { classes: classes, ...payload};
+    this.setState(finalPayload);
+    console.log('Order: ', this.state);
+  }
+
+  handleBreedable = async (e) => {
+
+    const val = e.target.checked;
 
     if (localStorage) {
       console.log('local storage supported');
@@ -313,35 +286,35 @@ class SearchAxies extends React.Component {
       localStorage.setItem('filters', JSON.stringify(filters));
     } 
 
-    this.setState({
-      breedable: filters.breedable
-    });
-
-    this.reloadAxies();
-
-    console.log('BREEDABLE: ',this.state.breedable, filters.breedable,  this.state);
-  }
-
-  handleStage = () => {
+    var payload = await this.reloadAxies();
+    var finalPayload = { breedable: filters.breedable, ...payload};
+    this.setState(finalPayload);
+    console.log('Stage: ', this.state);
 
   }
 
-  handleMystic = (e) => {
+  handleStage = async(e) => {
+    console.log(e.target.value, typeof e.target.value);
+
+    if (localStorage) {
+      console.log('local storage supported');
+      if (localStorage.getItem('filters') !== null) {
+        filters = JSON.parse(localStorage.getItem('filters'));
+      }
+      filters.stage = e.target.value;
+      localStorage.setItem('filters', JSON.stringify(filters));
+    } 
+
+    var payload = await this.reloadAxies();
+    var finalPayload = { stage: filters.stage, ...payload};
+    this.setState(finalPayload);
+
+    console.log('Stage: ', this.state);
+  }
+
+  handleMystic = async (e) => {
 
     const val = e.target.checked;
-
-    // show spinner
-    this.setState({
-      axies: null,
-    });
-
-    let filters = {
-      classes: [],
-      parts: [],
-      mystic: false,
-      pureness: 1,
-      breedable: false,
-    };
 
     if (localStorage) {
       console.log('local storage supported');
@@ -353,25 +326,41 @@ class SearchAxies extends React.Component {
     } 
 
     this.setState({
-      mystic: filters.mystic
+      mystic: filters.mystic,
+      axies: null,
     });
 
     this.reloadAxies();
+  }
 
+  handlePureness = async (e) => {
+    console.log(e.target.value);
 
+    if (localStorage) {
+      console.log('local storage supported');
+      if (localStorage.getItem('filters') !== null) {
+        filters = JSON.parse(localStorage.getItem('filters'));
+      }
+      filters.pureness = e.target.value;
+      localStorage.setItem('filters', JSON.stringify(filters));
+    } 
+
+    var payload = await this.reloadAxies();
+    var finalPayload = { pureness: filters.pureness, ...payload};
+    this.setState(finalPayload);
   }
 
   render() {
     let axiesElement;
-    if (this.state.axies !== null && this.state.axies.length > 0) {
-      axiesElement = this.state.axies.map((axie, i) => <Bundle key={i} bundle={axie} />);
-    } else if (this.state.axies === null) {
-      axiesElement = <Loader />;
-    } else if (this.state.axies.length > 0) {
-      axiesElement = <p>Axies temporarily out of stock! Contact us on Discord to purchase Axies.</p>;
+    if (this.state.axies !== undefined) {
+      if (this.state.axies !== null && this.state.axies.length > 0) {
+        axiesElement = this.state.axies.map((axie, i) => <Bundle key={i} bundle={axie} />);
+      } else if (this.state.axies === null) {
+        axiesElement = <Loader />;
+      } else if (this.state.axies.length > 0) {
+        axiesElement = <p>Axies temporarily out of stock! Contact us on Discord to purchase Axies.</p>;
+      }
     }
-
-    const { editFields } = this.state;
 
     return (
       <FullHeight className={styles.fullHeight}>
@@ -414,7 +403,8 @@ class SearchAxies extends React.Component {
                 <input type="checkbox" id="breedable" name="breedable" onChange={this.handleBreedable} /> Breedable
 
                 <h4>Stage</h4>
-                <select onChange={this.handleStage} id="stage">
+                <select onChange={this.handleStage} value={this.state.stage} id="stage">
+                  <option value="any">Any</option>
                   <option value="1">Egg</option>
                   <option value="2">Larva</option>
                   <option value="3">Petite</option>
@@ -422,13 +412,27 @@ class SearchAxies extends React.Component {
                 </select>
 
                 <br />
+
+                <h4>Pureness</h4>
+                <select onChange={this.handlePureness} value={this.state.pureness} id="pureness">
+                  <option value="any">Any</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                </select>
+
+                <br />
                 
                 <h4>Order by</h4>
-                <select onChange={this.handleOrder} id="orderBy" name="orderBy">
-                  <option>Token Id</option>
-                  <option>Lowest Price</option>
-                  <option>Highest Price</option>
-                  <option>Latest Auction</option>
+                <select onChange={this.handleOrder} value={this.state.orderBy} id="orderBy" name="orderBy">
+                  <option value="hightest_id">Highest Token Id</option>
+                  <option value="lowest_id">Lowest Token Id</option>
+                  <option value="lowest_price">Lowest Price</option>
+                  <option value="highest_price">Highest Price</option>
+                  <option value="latest_auction">Latest Auction</option>
                 </select>
               </div>
             </div>
