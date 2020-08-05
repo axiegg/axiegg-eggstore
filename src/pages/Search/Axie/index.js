@@ -26,6 +26,7 @@ let filters = {
   breedable: false,
   stage: 'any',
   orderBy: 'hightest_id',
+  owner: AXIE_TOKEN_ADDRESSES[1],
 };
 
 class Pager extends React.Component {
@@ -79,6 +80,7 @@ class SearchAxies extends React.Component {
         breedable: filters.breedable,
         stage: filters.stage,
         orderBy: filters.orderBy,
+        owner: filters.owner,
         pager: {
           totalAxies: 0, //data[0].totalAxies,
           offset: 0, //(pageId - 1) * 12,
@@ -98,6 +100,7 @@ class SearchAxies extends React.Component {
         breedable: false,
         stage: 'any',
         orderBy: 'lowest_id',
+        owner: AXIE_TOKEN_ADDRESSES[1],
         pager: {
           totalAxies: 0,
           offset: 0,
@@ -172,7 +175,7 @@ class SearchAxies extends React.Component {
   }
 
   async reloadAxies() {
-    const data = await this.getAxies(AXIE_TOKEN_ADDRESSES[1]);
+    const data = await this.getAxies(this.state.owner);
     var pager = this.state.pager;
     pager.totalAxies = data[0].totalAxies;
     pager.prev = (pager.pageId < 2) ? 1 : pager.pageId - 1;
@@ -222,6 +225,18 @@ class SearchAxies extends React.Component {
     }
     
     await this.updateState('classes', classes);
+  }
+
+  handleOwnerAddressSubmit = async (e) => {
+    e.preventDefault();
+    var address = this.state.owner;
+    console.log(address);
+    await this.updateState('owner', address);
+  }
+
+  handleOwnerAddressChange = (e) => {
+    console.log('ADDRESS CHANGE: ', e.target.value);
+    this.setState({owner: e.target.value});
   }
 
   handleParts = async (e) => {
@@ -316,6 +331,16 @@ class SearchAxies extends React.Component {
                   <input type="checkbox" onClick={this.toggleClass} id="dawn" value="dawn" /> Dawn <br />
                 </div>
               </div>
+
+              <div className={styles.classes}>
+                <h4>Address</h4>
+                <br />
+                <form onSubmit={this.handleOwnerAddressSubmit} className={styles.parts}>
+                  <input type="text" name="address" placeholder="Enter owner address" onChange={this.handleOwnerAddressChange} value={this.state.owner} />
+                  <input type="submit" name="submit" value="submit"/>
+                </form>
+              </div>
+
             </div>
             <div className={styles.partWrapper}>
               <h4>Parts</h4>
