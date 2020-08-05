@@ -67,9 +67,7 @@ class SearchAxies extends React.Component {
         // update the filters component
         for(var i =0; i < filters.classes.length; i++) {
           var classId = filters.classes[i];
-//          document.getElementById(classId).checked = true;
         }
-//        document.getElementById('breedable').checked = filters.breedable;
       }
 
       this.state = {
@@ -192,6 +190,26 @@ class SearchAxies extends React.Component {
     }
   }
 
+  storeLocally = (item, data) => {
+    if (localStorage) {
+      console.log('local storage supported');
+      if (localStorage.getItem('filters') !== null) {
+        filters = JSON.parse(localStorage.getItem('filters'));
+      }
+      filters[item] = data;
+      localStorage.setItem('filters', JSON.stringify(filters));
+    } 
+  }
+
+  updateState = async (item, data) => {
+    this.storeLocally(item, data);
+    var payload = await this.reloadAxies();
+    var finalPayload = { [item]: data, ...payload };
+    console.log('final payload: ', finalPayload);
+    this.setState(finalPayload);
+    console.log(`${item}: `, this.state);
+  }
+
   toggleClass = async (e) => {
     var classes = this.state.classes;
 
@@ -203,20 +221,7 @@ class SearchAxies extends React.Component {
         classes.splice(index, 1);
     }
     
-    if (localStorage) {
-      console.log('local storage supported');
-      if (localStorage.getItem('filters') !== null) {
-        filters = JSON.parse(localStorage.getItem('filters'));
-      }
-      filters.classes = classes;
-      localStorage.setItem('filters', JSON.stringify(filters));
-    } 
-
-    var payload = await this.reloadAxies();
-    var finalPayload = { classes: classes, ...payload};
-    this.setState(finalPayload);
-    console.log('Toggle class: ', finalPayload);
-
+    await this.updateState('classes', classes);
   }
 
   handleParts = async (e) => {
@@ -235,83 +240,22 @@ class SearchAxies extends React.Component {
         parts.splice(index, 1);
     }
 
-    if (localStorage) {
-      console.log('local storage supported');
-      if (localStorage.getItem('filters') !== null) {
-        filters = JSON.parse(localStorage.getItem('filters'));
-      }
-      filters.parts= parts;
-      localStorage.setItem('filters', JSON.stringify(filters));
-    } 
-
-    this.setState({
-      parts: parts,
-      axies: null,
-    });
-
-    this.reloadAxies();
-    var payload = await this.reloadAxies();
-    var finalPayload = { parts: parts, ...payload};
-    this.setState(finalPayload);
-    console.log('Parts: ', this.state);
+    await this.updateState('parts', parts);
   }
   
   handleOrder = async (e) => {
-
-    if (localStorage) {
-      console.log('local storage supported');
-      if (localStorage.getItem('filters') !== null) {
-        filters = JSON.parse(localStorage.getItem('filters'));
-      }
-      filters.orderBy = e.target.value;
-      localStorage.setItem('filters', JSON.stringify(filters));
-    } 
-
-    var payload = await this.reloadAxies();
-    var finalPayload = { classes: classes, ...payload};
-    this.setState(finalPayload);
-    console.log('Order: ', this.state);
+    await this.updateState('orderBy', e.target.value);
   }
 
   handleBreedable = async (e) => {
-
-    const val = e.target.checked;
-
-    if (localStorage) {
-      console.log('local storage supported');
-      if (localStorage.getItem('filters') !== null) {
-        filters = JSON.parse(localStorage.getItem('filters'));
-      }
-      filters.breedable = val;
-      localStorage.setItem('filters', JSON.stringify(filters));
-    } 
-
-    var payload = await this.reloadAxies();
-    var finalPayload = { breedable: filters.breedable, ...payload};
-    this.setState(finalPayload);
-    console.log('Stage: ', this.state);
-
+    await this.updateState('breedable', e.target.checked);
   }
 
   handleStage = async(e) => {
-    console.log(e.target.value, typeof e.target.value);
-
-    if (localStorage) {
-      console.log('local storage supported');
-      if (localStorage.getItem('filters') !== null) {
-        filters = JSON.parse(localStorage.getItem('filters'));
-      }
-      filters.stage = e.target.value;
-      localStorage.setItem('filters', JSON.stringify(filters));
-    } 
-
-    var payload = await this.reloadAxies();
-    var finalPayload = { stage: filters.stage, ...payload};
-    this.setState(finalPayload);
-
-    console.log('Stage: ', this.state);
+    await this.updateState('stage', e.target.value);
   }
 
+  /*
   handleMystic = async (e) => {
 
     const val = e.target.checked;
@@ -331,23 +275,10 @@ class SearchAxies extends React.Component {
     });
 
     this.reloadAxies();
-  }
+  }*/
 
   handlePureness = async (e) => {
-    console.log(e.target.value);
-
-    if (localStorage) {
-      console.log('local storage supported');
-      if (localStorage.getItem('filters') !== null) {
-        filters = JSON.parse(localStorage.getItem('filters'));
-      }
-      filters.pureness = e.target.value;
-      localStorage.setItem('filters', JSON.stringify(filters));
-    } 
-
-    var payload = await this.reloadAxies();
-    var finalPayload = { pureness: filters.pureness, ...payload};
-    this.setState(finalPayload);
+    await this.updateState('pureness', e.target.value);
   }
 
   render() {
