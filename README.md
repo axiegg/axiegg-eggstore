@@ -1,6 +1,5 @@
 # Axiegg store front
-2. Redux as store management with duck methodology
-3. Styling made with CSS/SASS modules `module.sass` or with standard CSS/SASS `.sass`.
+[![Build Status](https://travis-ci.com/axiegg/axiegg-eggstore.svg?branch=master)](https://travis-ci.com/axiegg/axiegg-eggstore)
 
 ##### Eslint made with Airbnb config and some custom tweaks
 It can be disabled in `./config-overrides.js` by commenting out lines or tweaking it in `./eslintrc`:
@@ -21,5 +20,5 @@ It can be disabled in `./config-overrides.js` by commenting out lines or tweakin
 ```
 
 #### The build and deploy is managed by TravisCI and settings are available in the
-`.travis,yml` file.
+`.travis.yml` file.
 
